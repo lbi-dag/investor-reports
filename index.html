@@ -1,250 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amplifon FY 2025 Investor Report</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f6; color: #1a1a2e; font-size: 13px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investor Reports Library</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(180deg, #f5f7fb 0%, #eef2f9 100%);
+      color: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
 
-  .page { max-width: 900px; margin: 24px auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
+    .container {
+      width: min(900px, 100%);
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 10px 32px rgba(15, 23, 42, 0.12);
+      overflow: hidden;
+    }
 
-  /* HEADER */
-  .header { background: linear-gradient(135deg, #c0001a 0%, #7a0010 100%); color: #fff; padding: 24px 32px 18px; display: flex; justify-content: space-between; align-items: flex-end; }
-  .header-left h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
-  .header-left p { font-size: 12px; opacity: 0.85; margin-top: 3px; }
-  .header-right { text-align: right; font-size: 11px; opacity: 0.8; line-height: 1.6; }
-  .badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); border-radius: 20px; padding: 3px 12px; font-size: 11px; margin-top: 6px; }
+    .header {
+      background: linear-gradient(135deg, #1f3a8a 0%, #1e1b4b 100%);
+      color: #fff;
+      padding: 28px 32px;
+    }
 
-  /* VERDICT BANNER */
-  .verdict { background: #fff8e1; border-left: 5px solid #f59e0b; padding: 10px 20px; font-size: 12.5px; line-height: 1.6; }
-  .verdict strong { color: #92400e; }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
 
-  /* MAIN GRID */
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .col { padding: 20px 24px; }
-  .col:first-child { border-right: 1px solid #eee; }
+    .header p {
+      font-size: 15px;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
 
-  /* KPI ROW */
-  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-bottom: 1px solid #eee; }
-  .kpi { padding: 14px 16px; text-align: center; border-right: 1px solid #eee; }
-  .kpi:last-child { border-right: none; }
-  .kpi .val { font-size: 19px; font-weight: 700; color: #c0001a; }
-  .kpi .val.neutral { color: #374151; }
-  .kpi .val.green { color: #059669; }
-  .kpi .sub { font-size: 10px; color: #6b7280; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; }
-  .kpi .chg { font-size: 11px; margin-top: 3px; }
-  .down { color: #c0001a; } .up { color: #059669; } .flat { color: #6b7280; }
+    .content {
+      padding: 26px 32px 30px;
+    }
 
-  h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #c0001a; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 2px solid #fce4e4; }
+    .content h2 {
+      font-size: 14px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #1f3a8a;
+      margin-bottom: 12px;
+    }
 
-  /* STRENGTHS */
-  .strength-item { display: flex; gap: 9px; margin-bottom: 9px; align-items: flex-start; }
-  .icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
-  .strength-item p { font-size: 12px; line-height: 1.55; color: #374151; }
-  .strength-item p strong { color: #1a1a2e; }
+    .report-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
 
-  /* RED FLAGS */
-  .flag-item { display: flex; gap: 9px; margin-bottom: 9px; align-items: flex-start; }
-  .flag-item p { font-size: 12px; line-height: 1.55; color: #374151; }
-  .flag-item p strong { color: #1a1a2e; }
+    .report-link {
+      display: block;
+      text-decoration: none;
+      border: 1px solid #dbe2ef;
+      border-radius: 10px;
+      padding: 16px 18px;
+      background: #fafcff;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+      color: inherit;
+    }
 
-  /* GEO TABLE */
-  .geo-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
-  .geo-table th { font-size: 10px; text-transform: uppercase; color: #9ca3af; font-weight: 600; padding: 5px 8px; text-align: left; border-bottom: 1px solid #e5e7eb; }
-  .geo-table td { font-size: 12px; padding: 6px 8px; border-bottom: 1px solid #f3f4f6; }
-  .geo-table tr:last-child td { border-bottom: none; }
-  .pill { display: inline-block; border-radius: 10px; padding: 1px 8px; font-size: 10.5px; font-weight: 600; }
-  .pill.red { background: #fee2e2; color: #b91c1c; }
-  .pill.green { background: #d1fae5; color: #065f46; }
-  .pill.amber { background: #fef3c7; color: #92400e; }
+    .report-link:hover,
+    .report-link:focus-visible {
+      transform: translateY(-1px);
+      border-color: #1f3a8a;
+      box-shadow: 0 8px 20px rgba(31, 58, 138, 0.15);
+      outline: none;
+    }
 
-  /* OUTLOOK */
-  .outlook-box { background: #f8fafc; border-radius: 8px; padding: 14px 16px; margin-top: 0; }
-  .outlook-box p { font-size: 12px; line-height: 1.6; color: #374151; }
-  .outlook-box p + p { margin-top: 8px; }
+    .report-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 5px;
+    }
 
-  /* LANGUAGE BOX */
-  .lang-box { margin-top: 0; }
-  .lang-item { background: #fafafa; border-radius: 6px; padding: 8px 10px; margin-bottom: 7px; border-left: 3px solid #e5e7eb; }
-  .lang-item .corp { font-size: 11px; color: #9ca3af; font-style: italic; margin-bottom: 3px; }
-  .lang-item .real { font-size: 12px; color: #1f2937; font-weight: 500; }
-  .lang-item .real::before { content: "→ "; color: #c0001a; font-weight: 700; }
-
-  /* BOTTOM BAR */
-  .bottom { background: #1a1a2e; color: #9ca3af; font-size: 10.5px; padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; }
-  .bottom a { color: #9ca3af; }
-
-  .section-gap { margin-top: 18px; }
-  .divider { border: none; border-top: 1px solid #eee; margin: 14px 0; }
-</style>
+    .report-meta {
+      font-size: 13px;
+      color: #4b5563;
+    }
+  </style>
 </head>
 <body>
-<div class="page">
+  <main class="container">
+    <header class="header">
+      <h1>Investor Reports</h1>
+      <p>Select a report below to open the detailed investor summary.</p>
+    </header>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-left">
-      <h1>Amplifon S.p.A. — FY 2025 Results</h1>
-      <p>Independent Analyst Summary · For General Investors</p>
-    </div>
-    <div class="header-right">
-      Ticker: AMP:IM (Euronext Milan)<br>
-      Sector: Hearing Care Retail<br>
-      <span class="badge">⚠ Recovery Mode — Watch Closely</span>
-    </div>
-  </div>
-
-  <!-- VERDICT -->
-  <div class="verdict">
-    <strong>One-line verdict:</strong> Amplifon is the world's largest hearing care retailer with real long-term potential, but 2025 was a year of setbacks — margins fell, profits dropped sharply, and the company is now restructuring to recover ground it lost. The business is not broken, but it is under pressure, and investors should separate the company's optimistic language from the actual numbers.
-  </div>
-
-  <!-- KPIs -->
-  <div class="kpi-row">
-    <div class="kpi">
-      <div class="val neutral">€2.40B</div>
-      <div class="sub">Revenue</div>
-      <div class="chg flat">▼ 0.6% reported</div>
-    </div>
-    <div class="kpi">
-      <div class="val">22.6%</div>
-      <div class="sub">EBITDA Margin</div>
-      <div class="chg down">▼ from 23.5% in 2024</div>
-    </div>
-    <div class="kpi">
-      <div class="val">€159M</div>
-      <div class="sub">Adjusted Net Profit</div>
-      <div class="chg down">▼ 15.4% vs 2024</div>
-    </div>
-    <div class="kpi">
-      <div class="val neutral">1.92x</div>
-      <div class="sub">Net Debt / EBITDA</div>
-      <div class="chg down">▲ from 1.63x end-2024</div>
-    </div>
-  </div>
-
-  <!-- TWO COLUMNS -->
-  <div class="grid">
-
-    <!-- LEFT: STRENGTHS + GEO -->
-    <div class="col">
-      <h2>✅ Strengths</h2>
-
-      <div class="strength-item">
-        <div class="icon">🌍</div>
-        <p><strong>Global market leader.</strong> Amplifon operates ~10,100 locations across 25 countries. Scale gives it pricing power, supplier leverage, and brand recognition that smaller rivals cannot match.</p>
-      </div>
-      <div class="strength-item">
-        <div class="icon">📈</div>
-        <p><strong>Structural tailwind intact.</strong> The hearing care market benefits from aging populations worldwide and rising awareness. Long-term demand is not in question — it's a when, not an if.</p>
-      </div>
-      <div class="strength-item">
-        <div class="icon">💵</div>
-        <p><strong>Cash generation is solid.</strong> Adjusted free cash flow of €174M was strong. The company has enough liquidity to fund its restructuring without needing emergency financing.</p>
-      </div>
-      <div class="strength-item">
-        <div class="icon">🔧</div>
-        <p><strong>Restructuring ahead of schedule.</strong> The Fit4Growth program closed 160 loss-making clinics, cut 500 jobs, and reduced capital spending by €30M — all faster than planned. Implementation costs also came in lower (€25M vs €35M originally budgeted).</p>
-      </div>
-      <div class="strength-item">
-        <div class="icon">📱</div>
-        <p><strong>Digital push gaining traction.</strong> The new Amplifon App reached 25% penetration, and the branded product line expanded to 17 countries. These are early but real steps toward a higher-margin, direct-to-patient model.</p>
-      </div>
-
-      <div class="section-gap"></div>
-      <h2>🗺 Regional Scorecard</h2>
-      <table class="geo-table">
-        <thead>
-          <tr><th>Region</th><th>% of Sales</th><th>Organic Growth</th><th>Margin</th><th>Verdict</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>EMEA</strong></td><td>65%</td><td>–0.6%</td><td>26.6%</td>
-            <td><span class="pill amber">Mixed</span></td>
-          </tr>
-          <tr>
-            <td><strong>Americas</strong></td><td>21%</td><td>+1.9%</td><td>23.5%</td>
-            <td><span class="pill amber">Promising but costly</span></td>
-          </tr>
-          <tr>
-            <td><strong>APAC</strong></td><td>14%</td><td>–0.3%</td><td>24.9%</td>
-            <td><span class="pill red">Struggling</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <p style="font-size:11px; color:#9ca3af; margin-top:6px;">All margins are adjusted EBITDA. FX headwinds hit Americas (–6.3%) and APAC (–6.4%) hard.</p>
-    </div>
-
-    <!-- RIGHT: RED FLAGS + LANGUAGE -->
-    <div class="col">
-      <h2>🚩 Red Flags</h2>
-
-      <div class="flag-item">
-        <div class="icon">📉</div>
-        <p><strong>Reported profit fell by 37%.</strong> The "adjusted" net profit of €159M looks manageable, but the actual reported figure — what accountants call the real number — was just €91M, down 37% from 2024. The gap between the two is growing, which means restructuring and one-off charges are becoming a regular feature, not an exception.</p>
-      </div>
-      <div class="flag-item">
-        <div class="icon">⚠️</div>
-        <p><strong>Zero organic growth for the full year.</strong> Organic growth — revenue from existing stores, excluding acquisitions and currency — was exactly 0.0% in 2025. The company calls the H2 recovery "significant," but a full year at zero is a clear sign the core business stalled.</p>
-      </div>
-      <div class="flag-item">
-        <div class="icon">🇬🇧</div>
-        <p><strong>UK exit comes with a hidden cost.</strong> Selling the UK business to a Demant rival is strategically sound, but it triggers an ~€18M accounting charge in Q1 2026 that will hurt next quarter's reported earnings. Investors should expect a messy Q1.</p>
-      </div>
-      <div class="flag-item">
-        <div class="icon">🏥</div>
-        <p><strong>US insurance business is deteriorating.</strong> The managed care agreement termination (early 2026) removed ~1% of group revenue. The US insurance segment dragged on both Americas organic growth and margins all year — and there is no clear replacement strategy yet.</p>
-      </div>
-      <div class="flag-item">
-        <div class="icon">💳</div>
-        <p><strong>Debt is rising, not falling.</strong> Net debt increased from €962M to €1,046M during 2025, even after generating €174M of free cash flow. The company spent heavily on buybacks (€108M) and dividends (€65M) while also investing in acquisitions. Leverage moved in the wrong direction for the year.</p>
-      </div>
-
-      <div class="section-gap"></div>
-      <h2>🗣 Corporate Speak, Decoded</h2>
-      <div class="lang-box">
-        <div class="lang-item">
-          <div class="corp">"Challenging year for the industry as a whole"</div>
-          <div class="real">Results were poor. We want to share the blame with the market.</div>
-        </div>
-        <div class="lang-item">
-          <div class="corp">"Significant improvement in organic growth in H2"</div>
-          <div class="real">H1 was bad enough that H2 looked good. Full-year was still zero.</div>
-        </div>
-        <div class="lang-item">
-          <div class="corp">"Headcount efficiency of ~500 people"</div>
-          <div class="real">500 people were laid off.</div>
-        </div>
-        <div class="lang-item">
-          <div class="corp">"Rationalization of the Chinese wholesale business"</div>
-          <div class="real">The China wholesale operation wasn't working, so they wound it down.</div>
-        </div>
-        <div class="lang-item">
-          <div class="corp">"Material increase in adjusted EBITDA margin" (2026 guidance)</div>
-          <div class="real">No specific target given. This is a promise, not a forecast.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- OUTLOOK -->
-  <div style="padding: 0 24px 20px;">
-    <h2>🔭 What to Watch in 2026</h2>
-    <div class="outlook-box">
-      <p><strong>The bull case:</strong> Fit4Growth delivers margin recovery toward 24–24.5%, organic growth returns to the 3–4% range as the market normalizes, and Miracle-Ear's direct network in the US begins generating returns on the significant investment made. The proposed €0.29/share dividend signals confidence from management.</p>
-      <p><strong>The bear case:</strong> The US insurance segment continues to erode, Germany and APAC stay soft, currency headwinds persist as the euro stays strong, and the promised margin recovery is delayed into 2027 or beyond. The company also faces a €350M Eurobond maturity in 2027 that will need refinancing.</p>
-      <p><strong>The bottom line for investors:</strong> Amplifon is not a company in crisis — it is a market leader going through a painful but manageable reset. The long-term thesis (aging populations, underpenetrated hearing care market, strong brand) remains intact. But 2025 revealed that the business is more cyclically and operationally sensitive than its premium valuation historically implied. Patient investors with a 3–5 year horizon may see opportunity; short-term investors should wait for evidence that organic growth and margins are genuinely recovering before buying in.</p>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="bottom">
-    <span>Amplifon S.p.A. (AMP:IM) · FY 2025 Press Release dated March 4, 2026 · Independent analysis for informational purposes only</span>
-    <span>Not investment advice · Always do your own research</span>
-  </div>
-
-</div>
+    <section class="content">
+      <h2>Available Reports</h2>
+      <ul class="report-list">
+        <li>
+          <a class="report-link" href="reports/amplifon-2025.html">
+            <div class="report-title">Amplifon S.p.A. — FY 2025 Investor Report</div>
+            <div class="report-meta">1 report available · Click to open full analysis</div>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
 </body>
 </html>
