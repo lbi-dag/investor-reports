@@ -15,7 +15,7 @@ This roadmap outlines the strategic direction for the Investor Reports ecosystem
 ### 2. Batch Analysis Pipeline & Metadata Tracking
 - **Goal**: Automate report generation for all historical data in the `sources/` directory.
 - **Key Actions**:
-    - Create `scripts/generate_all_reports.py` to process the entire data lake.
+    - Create `scripts/inventory_reports.py` to process the entire data lake.
     - Add metadata fields to reports: analysis date, LLM model version, and extraction engine version.
     - Implement a "Stale Report" detection system to trigger re-analysis when skills or models are upgraded.
 - **Related Issues**: #5, #4

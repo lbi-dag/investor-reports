@@ -33,7 +33,7 @@ python3 scripts/sync_amplifon_reports.py
 python3 scripts/sync_amplifon_reports.py --check
 
 # Inventory all sources and update the Market Reality Dashboard
-python3 scripts/generate_all_reports.py
+python3 scripts/inventory_reports.py
 
 # Force refresh all extracted Markdown from original PDFs
 python3 scripts/sync_amplifon_reports.py --refresh-extracts
@@ -47,6 +47,6 @@ python3 scripts/sync_amplifon_reports.py --refresh-extracts
 - `ROADMAP.md`: Future development plans.
 - `scripts/`:
     - `sync_amplifon_reports.py`: The primary automation script.
-    - `generate_all_reports.py`: Batch analysis inventory and dashboard updater.
+    - `inventory_reports.py`: Batch analysis inventory and dashboard updater.
     - `extract_pdf_markdown.mjs`: The text extraction engine.
 - `.github/workflows/`: Automation for bi-monthly syncs and PR generation.
