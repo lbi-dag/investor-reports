@@ -6,7 +6,7 @@ from pathlib import Path
 REPORTS_DIR = Path("reports")
 ANALYSIS_DATE = "2026-06-06"
 SKILL_VERSION = "1.1.0"
-MODEL_VERSION = "OpenAI GPT-5 Codex"
+MODEL_VERSION = "OpenAI GPT-5.5"
 
 REPORTS = [
     {
