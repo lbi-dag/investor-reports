@@ -32,47 +32,21 @@ python3 scripts/sync_amplifon_reports.py
 # Check for new reports without downloading
 python3 scripts/sync_amplifon_reports.py --check
 
+# Inventory all sources and update the Market Reality Dashboard
+python3 scripts/generate_all_reports.py
+
 # Force refresh all extracted Markdown from original PDFs
 python3 scripts/sync_amplifon_reports.py --refresh-extracts
 ```
-
-### Testing
-```bash
-# Run Python unit tests
-npm test
-# Or directly:
-python3 -m unittest discover -s tests -v
-```
-
-### Local Preview
-```bash
-# Serve the static landing page and reports
-python3 -m http.server 8000
-```
-
-## Development Conventions
-
-### Source Management
-- **PDFs are ephemeral**: The sync script downloads PDFs, validates them (SHA-256), extracts text, and deletes the PDF. DO NOT commit PDFs to the repository.
-- **Extraction Format**: Extracted Markdown files include metadata headers and `<!-- page: N -->` markers. These must be preserved as they are used for citations.
-- **Directory Structure**: Sources are organized by company and period, e.g., `sources/amplifon/2026-q1/financial-report.md`.
-
-### Analysis Workflow
-- Use the `read-between-financial-lines` skill for generating briefs.
-- **Evidence-First**: Every factual claim must be cited with page numbers or document titles.
-- **Fact vs. Claim**: Explicitly distinguish between reported facts, calculations, management claims, and analyst inferences.
-- **Reconciliation**: Always compare "Adjusted" metrics against their "Reported" GAAP/IFRS counterparts.
-
-## Specialized Skills
-
-- **`read-between-financial-lines`**: Activated via `activate_skill`. It provides a rigorous framework for financial analysis, focusing on skepticism, evidence-based interpretation, and decoding corporate euphemisms.
-
+...
 ## Repository Structure
 
-- `index.html`: Landing page for the reports.
+- `index.html`: Market Reality Dashboard and report landing page.
 - `sources/`: Data lake of extracted financial materials.
 - `reports/`: Human/AI-written investor briefs.
+- `ROADMAP.md`: Future development plans.
 - `scripts/`:
     - `sync_amplifon_reports.py`: The primary automation script.
+    - `generate_all_reports.py`: Batch analysis inventory and dashboard updater.
     - `extract_pdf_markdown.mjs`: The text extraction engine.
 - `.github/workflows/`: Automation for bi-monthly syncs and PR generation.
