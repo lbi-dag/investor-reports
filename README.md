@@ -6,13 +6,16 @@ The project focuses on reading beyond management's headline narrative:
 reconciling reported and adjusted figures, identifying selective comparisons,
 and translating material corporate language into evidence-based plain English.
 
-## Market Reality Dashboard
+## Company Directory And Report Dashboards
 
-The repository features a [Market Reality Dashboard](index.html) that tracks the gap between corporate narratives and financial reality. It provides real-time statistics on report coverage and surface-extracts key AI verdicts.
+The root [company directory](index.html) lists covered and planned companies.
+Each covered company has a report-history dashboard, such as
+[Amplifon](companies/amplifon.html), with period-level verdicts and links.
 
 ## Repository Structure
 
-- `index.html`: Market Reality Dashboard and report-library landing page.
+- `index.html`: Company-directory landing page.
+- `companies/`: Company-level report-history dashboards.
 - `reports/`: Published investor briefs and reporting inventory.
 - `sources/amplifon/`: Amplifon source manifest, generated index, and page-marked Markdown extracts.
 - `scripts/sync_amplifon_reports.py`: Source discovery, validation, extraction, and indexing pipeline.
@@ -79,7 +82,7 @@ python3 scripts/sync_amplifon_reports.py --check
 
 ## Batch Analysis & Dashboard
 
-Inventory the entire data lake and update the Market Reality Dashboard:
+Inventory the entire data lake and update the company directory and report dashboards:
 
 ```bash
 python3 scripts/inventory_reports.py

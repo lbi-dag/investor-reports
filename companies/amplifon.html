@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amplifon Investor Reports</title><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #1a1a2e; padding: 40px 20px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.header { background: linear-gradient(135deg, #1f3a8a 0%, #1e1b4b 100%); color: #fff; padding: 40px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 10px 32px rgba(15, 23, 42, .15); }
+.header h1 { font-size: 32px; margin-bottom: 10px; }.header p { font-size: 16px; opacity: .9; max-width: 700px; margin-bottom: 20px; }
+.header-link { display: inline-block; color: #fff; text-decoration: none; font-size: 13px; padding: 8px 16px; margin-right: 8px; background: #ffffff1a; border: 1px solid #ffffff33; border-radius: 6px; }
+.stats-bar,.company-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
+.stat-card,.company-card { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px #0000000d; border-left: 4px solid #1f3a8a; }
+.stat-value { font-size: 24px; font-weight: 700; color: #111827; }.stat-label { font-size: 12px; color: #6b7280; text-transform: uppercase; margin-top: 4px; }
+.company-card h2 { margin-bottom: 6px; }.company-card p { color: #4b5563; line-height: 1.5; margin-bottom: 14px; }.company-meta { color: #6b7280; font-size: 12px; margin-bottom: 14px; }
+.dashboard-table { width: 100%; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px #00000014; border-collapse: collapse; overflow: hidden; }
+.dashboard-table th { background: #f9fafb; padding: 16px; text-align: left; font-size: 12px; text-transform: uppercase; color: #4b5563; border-bottom: 1px solid #e5e7eb; }
+.dashboard-table td { padding: 16px; border-bottom: 1px solid #f3f4f6; font-size: 14px; }.verdict-cell { max-width: 480px; color: #374151; font-style: italic; }
+.status-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }.status-analyzed { background: #dcfce7; color: #166534; }.status-missing { background: #f3f4f6; color: #6b7280; }
+.view-btn { display: inline-block; padding: 7px 14px; background: #1f3a8a; color: #fff; text-decoration: none; border-radius: 6px; font-size: 12px; }.view-btn.disabled { background: #e5e7eb; color: #6b7280; pointer-events: none; }
+@media (max-width: 720px) { body { padding: 20px 10px; }.header { padding: 26px 22px; }.table-wrap { overflow-x: auto; }.dashboard-table { min-width: 760px; } }
+</style></head><body><main class="container">
+<header class="header"><h1>Amplifon Report History</h1><p>Period-level investor briefs reconciling management narratives with official reported figures.</p>
+<a class="header-link" href="../index.html">All companies</a><a class="header-link" href="../sources/amplifon/INDEX.md">Official source index</a></header>
+<div class="stats-bar"><div class="stat-card"><div class="stat-value">9</div><div class="stat-label">Analyzed reports</div></div>
+<div class="stat-card"><div class="stat-value">0</div><div class="stat-label">Pending analysis</div></div>
+<div class="stat-card"><div class="stat-value">AMP:IM</div><div class="stat-label">Ticker</div></div></div>
+<div class="table-wrap"><table class="dashboard-table"><thead><tr><th>Period</th><th>Status</th><th>One-line verdict</th><th>Action</th></tr></thead>
+<tbody>
+        <tr>
+          <td>2026-Q1</td>
+          <td><span class="status-badge status-analyzed">Present</span></td>
+          <td class="verdict-cell">The core business is improving: organic growth returned and adjusted margins expanded. But this is not yet a clean reported recovery—revenue fell, reported profit dropped 68%, and the proposed GN Hearing acquisition adds material financing, dilution, and execution risk.</td>
+          <td><a href="../reports/amplifon-2026-q1.html" class="view-btn">View report</a></td>
+        </tr>
+        <tr>
+          <td>2025-FY</td>
+          <td><span class="status-badge status-analyzed">Present</span></td>
+          <td class="verdict-cell">Amplifon's core business stalled in 2025 and margins compressed across every region. The second-half improvement and concrete Fit4Growth actions are credible early recovery signals, but reported and adjusted earnings both declined while debt and leverage rose.</td>
+          <td><a href="../reports/amplifon-2025.html" class="view-btn">View report</a></td>
+        </tr>
+        <tr>
+          <td>2025-9M</td>
+          <td><span class="status-badge status-analyzed">Present</span></td>
+          <td class="verdict-cell">Nine-month revenue was flat while adjusted EBITDA, adjusted profit, and free cash flow fell sharply; Fit4Growth offered a credible response, but guidance was narrowed again and debt rose after heavy buybacks and dividends.</td>
+          <td><a href="../reports/amplifon-2025-9m.html" class="view-btn">View report</a></td>
+        </tr>
+        <tr>
+          <td>2025-H1</td>
+          <td><span class="status-badge status-analyzed">Present</span></td>
+          <td class="verdict-cell">Amplifon&#x27;s first-half results showed broad deterioration: revenue was nearly flat, margins and profits fell across regions, cash conversion weakened, debt rose, and management cut both revenue-growth and margin guidance.</td>
+          <td><a href="../reports/amplifon-2025-h1.html" class="view-btn">View report</a></td>
+        </tr>
+        <tr>
+          <td>2025-Q1</td>
+          <td><span class="status-badge status-analyzed">Present</span></td>
+          <td class="verdict-cell">Amplifon achieved a record first-quarter EBITDA margin, but organic growth was nearly flat, reported and adjusted profits declined, free cash flow halved, and net debt increased.</td>
+          <td><a href="../reports/amplifon-2025-q1.html" class="view-btn">View report</a></td>
+        </tr>
+        <tr>
+          <td>2024-FY</td>
+          <td><span class="status-badge status-analyzed">Present</span></td>
+          <td class="verdict-cell">Amplifon delivered record revenue driven by an aggressive US acquisition strategy, but the "growth-at-any-cost" approach led to significant margin compression and an 8.5% recurring profit decline as high interest rates and restructuring costs bit into the bottom line.</td>
+          <td><a href="../reports/amplifon-2024.html" class="view-btn">View report</a></td>
+        </tr>
+        <tr>
+          <td>2024-9M</td>
+          <td><span class="status-badge status-analyzed">Present</span></td>
+          <td class="verdict-cell">Amplifon maintained 6.1% revenue growth through nine months, but recurring profit declined, Q3 margins weakened across EMEA and Americas, free cash flow fell, and net debt climbed as acquisition spending accelerated.</td>
+          <td><a href="../reports/amplifon-2024-9m.html" class="view-btn">View report</a></td>
+        </tr>
+        <tr>
+          <td>2024-H1</td>
+          <td><span class="status-badge status-analyzed">Present</span></td>
+          <td class="verdict-cell">First-half revenue and recurring EBITDA grew strongly, but EMEA weakened in Q2, recurring profit barely advanced, free cash flow fell sharply, and acquisition-led spending lifted net debt above €1.0B.</td>
+          <td><a href="../reports/amplifon-2024-h1.html" class="view-btn">View report</a></td>
+        </tr>
+        <tr>
+          <td>2024-Q1</td>
+          <td><span class="status-badge status-analyzed">Present</span></td>
+          <td class="verdict-cell">Amplifon opened 2024 with broad revenue growth and a meaningful recurring margin improvement, but free cash flow weakened and acquisition spending pushed net debt higher, making the quality of the growth less clean than the headline suggests.</td>
+          <td><a href="../reports/amplifon-2024-q1.html" class="view-btn">View report</a></td>
+        </tr></tbody></table></div></main></body></html>

@@ -4,7 +4,7 @@ import json
 import os
 import shutil
 from pathlib import Path
-from scripts.inventory_reports import get_existing_reports, get_available_sources, period_sort_key
+from scripts.inventory_reports import get_existing_reports, get_available_sources, period_sort_key, render_company_directory, render_company_page
 
 class TestInventoryReports(unittest.TestCase):
     def test_period_sort_key(self):
@@ -23,7 +23,7 @@ class TestInventoryReports(unittest.TestCase):
 
     def test_get_existing_reports_ignores_invalid_report(self):
         with unittest.mock.patch('scripts.inventory_reports.REPORTS_DIR', Path('reports')):
-            with unittest.mock.patch('scripts.inventory_reports.validate_report', return_value=["invalid"]):
+            with unittest.mock.patch('scripts.inventory_reports.report_structure_errors', return_value=["invalid"]):
                 reports = get_existing_reports()
                 self.assertEqual(reports, {"amplifon": []})
 
@@ -32,6 +32,25 @@ class TestInventoryReports(unittest.TestCase):
         with unittest.mock.patch('scripts.inventory_reports.SOURCES_DIR', Path('non_existent_dir')):
             sources = get_available_sources()
             self.assertEqual(sources, {})
+
+    def test_company_directory_links_covered_company_and_lists_planned_company(self):
+        html = render_company_directory([{"company": "amplifon", "status": "PRESENT"}])
+        self.assertIn('href="companies/amplifon.html"', html)
+        self.assertIn('href="companies/starkey.html"', html)
+        self.assertIn("Coverage planned", html)
+
+    def test_company_page_links_reports_from_company_directory(self):
+        inventory = [{"company": "amplifon", "period": "2025-fy", "status": "PRESENT"}]
+        company = {"slug": "amplifon", "name": "Amplifon", "ticker": "AMP:IM"}
+        html = render_company_page(company, inventory)
+        self.assertIn('href="../reports/amplifon-2025.html"', html)
+        self.assertIn('href="../index.html"', html)
+
+    def test_planned_company_page_has_no_broken_source_link(self):
+        company = {"slug": "starkey", "name": "Starkey", "ticker": "Private"}
+        html = render_company_page(company, [])
+        self.assertIn("No reports available yet", html)
+        self.assertNotIn("../sources/starkey/INDEX.md", html)
 
 if __name__ == "__main__":
     unittest.main()

@@ -219,7 +219,7 @@ def render(report):
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amplifon {escape(report["period"])} Investor Report</title><style>{STYLE}</style></head><body>
-<a class="back" href="../index.html">Back to Market Reality Dashboard</a><main class="page">
+<a class="back" href="../companies/amplifon.html">Back to Amplifon reports</a><main class="page">
 <header class="header"><div><h1>Amplifon S.p.A. - {escape(report["period"])} Results</h1><p>Independent, evidence-based investor summary</p></div>
 <div class="meta">Ticker: AMP:IM · Euronext Milan<br>Period ended {escape(report["ended"])}<br><span class="badge">{escape(report["badge"])}</span></div></header>
 <div class="verdict"><strong>One-line verdict:</strong> {escape(report["verdict"])}</div>

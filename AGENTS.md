@@ -32,7 +32,7 @@ python3 scripts/sync_amplifon_reports.py
 # Check for new reports without downloading
 python3 scripts/sync_amplifon_reports.py --check
 
-# Inventory all sources and update the Market Reality Dashboard
+# Inventory all sources and update company/report dashboards
 python3 scripts/inventory_reports.py
 
 # Force refresh all extracted Markdown from original PDFs
@@ -41,7 +41,8 @@ python3 scripts/sync_amplifon_reports.py --refresh-extracts
 ...
 ## Repository Structure
 
-- `index.html`: Market Reality Dashboard and report landing page.
+- `index.html`: Company-directory landing page.
+- `companies/`: Company-level report-history dashboards.
 - `sources/`: Data lake of extracted financial materials.
 - `reports/`: Human/AI-written investor briefs.
 - `ROADMAP.md`: Future development plans.

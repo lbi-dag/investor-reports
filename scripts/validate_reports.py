@@ -45,11 +45,16 @@ def local_link_errors(html_path):
     return errors
 
 
-def report_contract_errors(html_path):
+def report_structure_errors(html_path):
     content = html_path.read_text(encoding="utf-8")
     errors = [f"missing required marker: {marker}" for marker in REQUIRED_MARKERS if marker not in content]
     if "../sources/" not in content:
         errors.append("missing local primary-source citation")
+    return errors
+
+
+def report_contract_errors(html_path):
+    errors = report_structure_errors(html_path)
     errors.extend(local_link_errors(html_path))
     return errors
 
