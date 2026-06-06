@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 import re
-from html import escape
+from html import escape, unescape
 from pathlib import Path
 from datetime import datetime
 try:
@@ -24,22 +24,26 @@ SKILL_VERSION = "1.1.0"  # Increment when SKILL.md or references change
 PAGE_STYLE = """
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #1a1a2e; padding: 40px 20px; }
+a:focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
 .container { max-width: 1100px; margin: 0 auto; }
 .header { background: linear-gradient(135deg, #1f3a8a 0%, #1e1b4b 100%); color: #fff; padding: 40px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 10px 32px rgba(15, 23, 42, .15); }
-.header h1 { font-size: 32px; margin-bottom: 10px; }.header p { font-size: 16px; opacity: .9; max-width: 700px; margin-bottom: 20px; }
-.header-link { display: inline-flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-size: 13px; padding: 8px 16px; margin-right: 8px; background: #ffffff1a; border: 1px solid #ffffff33; border-radius: 6px; }
+.header-company { display: flex; align-items: center; gap: 24px; margin-bottom: 22px; }.header-logo-stage { display: flex; align-items: center; justify-content: center; width: 150px; height: 76px; flex: 0 0 auto; padding: 14px; border-radius: 12px; background: #fff; }.header-logo { display: block; max-width: 118px; max-height: 48px; }
+.header h1 { font-size: 32px; margin-bottom: 8px; }.header p { font-size: 16px; line-height: 1.55; opacity: .9; max-width: 720px; }.header-meta { margin-top: 8px; color: #dbeafe; font-size: 13px; }
+.header-actions { display: flex; flex-wrap: wrap; gap: 8px; }.header-link { display: inline-flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-size: 13px; padding: 9px 16px; background: #ffffff1a; border: 1px solid #ffffff33; border-radius: 7px; transition: background .15s ease, border-color .15s ease; }.header-link:hover { background: #ffffff29; border-color: #ffffff66; }
 .stats-bar,.company-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
 .stat-card,.company-card { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px #0000000d; border-left: 4px solid #1f3a8a; }
 .stat-value { font-size: 24px; font-weight: 700; color: #111827; }.stat-label { font-size: 12px; color: #6b7280; text-transform: uppercase; margin-top: 4px; }
 .company-card h2 { margin-bottom: 6px; }.company-card p { color: #4b5563; line-height: 1.5; margin-bottom: 14px; }.company-meta { color: #6b7280; font-size: 12px; margin-bottom: 14px; }
 .logo-stage { height: 92px; display: flex; align-items: center; justify-content: center; margin: -4px -4px 18px; padding: 18px; border-radius: 9px; background: #f8fafc; border: 1px solid #eef0f3; }
 .logo-stage-dark { background: #253746; border-color: #253746; }.company-logo { display: block; max-width: 210px; max-height: 56px; width: auto; height: auto; }
+.section-heading { margin: 0 0 14px; color: #111827; font-size: 19px; }.latest-report { display: grid; grid-template-columns: 150px 1fr auto; align-items: center; gap: 24px; margin-bottom: 30px; padding: 26px 28px; border: 1px solid #dbe4f0; border-radius: 14px; background: linear-gradient(135deg, #fff 20%, #f5f8ff 100%); box-shadow: 0 8px 24px #0f172a12; }.latest-label { margin-bottom: 7px; color: #1f3a8a; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }.latest-period { color: #111827; font-size: 25px; font-weight: 750; }.latest-brief { color: #273449; font-size: 18px; font-weight: 650; line-height: 1.4; }
 .dashboard-table { width: 100%; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px #00000014; border-collapse: collapse; overflow: hidden; }
 .dashboard-table th { background: #f9fafb; padding: 16px; text-align: left; font-size: 12px; text-transform: uppercase; color: #4b5563; border-bottom: 1px solid #e5e7eb; }
-.dashboard-table td { padding: 16px; border-bottom: 1px solid #f3f4f6; font-size: 14px; }.verdict-cell { max-width: 480px; color: #374151; font-style: italic; }
+.dashboard-table tbody tr { transition: background .15s ease; }.dashboard-table tbody tr:hover { background: #f8faff; }.dashboard-table td { padding: 17px 16px; border-bottom: 1px solid #f3f4f6; font-size: 14px; }.period-cell { color: #111827; font-weight: 700; white-space: nowrap; }.brief-cell { max-width: 520px; color: #374151; font-weight: 550; line-height: 1.45; }
 .status-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }.status-analyzed { background: #dcfce7; color: #166534; }.status-missing { background: #f3f4f6; color: #6b7280; }
-.view-btn { display: inline-block; padding: 7px 14px; background: #1f3a8a; color: #fff; text-decoration: none; border-radius: 6px; font-size: 12px; }.view-btn.disabled { background: #e5e7eb; color: #6b7280; pointer-events: none; }
-@media (max-width: 720px) { body { padding: 20px 10px; }.header { padding: 26px 22px; }.table-wrap { overflow-x: auto; }.dashboard-table { min-width: 760px; } }
+.view-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 38px; padding: 8px 15px; background: #1f3a8a; color: #fff; text-decoration: none; border-radius: 7px; font-size: 12px; font-weight: 650; transition: background .15s ease, transform .15s ease; }.view-btn:hover { background: #172e70; transform: translateY(-1px); }.view-btn.disabled { background: #e5e7eb; color: #6b7280; pointer-events: none; }
+.mobile-report-list { display: none; }.report-card { display: block; padding: 18px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; color: inherit; text-decoration: none; box-shadow: 0 3px 12px #0f172a0d; }.report-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }.report-card-brief { color: #273449; font-weight: 600; line-height: 1.5; }.report-card-action { display: block; margin-top: 14px; color: #1f3a8a; font-size: 12px; font-weight: 700; }.page-footer { display: flex; justify-content: space-between; gap: 20px; margin-top: 30px; padding: 18px 2px 0; border-top: 1px solid #dce2ea; color: #6b7280; font-size: 11px; line-height: 1.5; }
+@media (max-width: 720px) { body { padding: 20px 12px; }.header { padding: 26px 22px; }.header-company { display: block; }.header-logo-stage { width: 128px; height: 66px; margin-bottom: 18px; }.header h1 { font-size: 27px; }.latest-report { display: block; padding: 22px; }.latest-report .view-btn { margin-top: 18px; }.table-wrap { display: none; }.mobile-report-list { display: grid; gap: 12px; }.page-footer { display: block; }.page-footer span { display: block; margin-bottom: 6px; } }
 """
 
 def get_existing_reports():
@@ -71,19 +75,25 @@ def get_available_sources():
                 sources[company] = periods
     return sources
 
-def extract_verdict(html_path):
+def extract_brief(html_path):
     try:
         if not html_path.exists():
-            return "Analysis pending..."
-        with open(html_path, "r") as f:
-            content = f.read()
-            # Look for <div class="verdict"><strong>One-line verdict:</strong> ...</div>
-            match = re.search(r'<div class="verdict">\s*<strong>One-line verdict:</strong>\s*(.*?)\s*</div>', content, re.DOTALL)
-            if match:
-                return match.group(1).strip()
+            return "Analysis pending"
+        content = html_path.read_text(encoding="utf-8")
+        match = re.search(r'<span class="badge">\s*(.*?)\s*</span>', content, re.DOTALL)
+        if match:
+            return unescape(re.sub(r"<[^>]+>", "", match.group(1))).strip()
     except Exception:
         pass
-    return "Analysis pending..."
+    return "Analysis pending"
+
+
+def format_period(period):
+    parts = period.upper().split("-")
+    if len(parts) == 1:
+        return f"FY {parts[0]}"
+    year, suffix = parts
+    return f"{suffix} {year}"
 
 def period_sort_key(period):
     # Standardize period sorting: Year (2024) and Period (Q1 < H1 < 9M < FY)
@@ -134,24 +144,44 @@ def render_company_directory(inventory):
 
 def render_company_page(company, inventory):
     rows = []
-    for item in sorted(inventory, key=lambda value: period_sort_key(value["period"]), reverse=True):
+    mobile_cards = []
+    sorted_inventory = sorted(inventory, key=lambda value: period_sort_key(value["period"]), reverse=True)
+    latest_report = None
+    for item in sorted_inventory:
         period = item["period"]
         status = item["status"]
         filename = f'{company["slug"]}-{period.replace("-fy", "")}.html'
         report_path = REPORTS_DIR / filename
-        verdict = extract_verdict(report_path) if status == "PRESENT" else "Analysis pending..."
+        brief = extract_brief(report_path) if status == "PRESENT" else "Analysis pending"
+        display_period = format_period(period)
         status_class = "status-analyzed" if status == "PRESENT" else "status-missing"
         button_class = "view-btn" if status == "PRESENT" else "view-btn disabled"
         link = f"../reports/{filename}" if status == "PRESENT" else "#"
+        status_label = "Analyzed" if status == "PRESENT" else "Pending"
+        if latest_report is None and status == "PRESENT":
+            latest_report = {"period": display_period, "brief": brief, "link": link}
         rows.append(f"""
         <tr>
-          <td>{period.upper()}</td>
-          <td><span class="status-badge {status_class}">{status.capitalize()}</span></td>
-          <td class="verdict-cell">{verdict}</td>
+          <td class="period-cell">{display_period}</td>
+          <td><span class="status-badge {status_class}">{status_label}</span></td>
+          <td class="brief-cell">{escape(brief)}</td>
           <td><a href="{link}" class="{button_class}">{"View report" if status == "PRESENT" else "Pending"}</a></td>
         </tr>""")
+        if status == "PRESENT":
+            mobile_cards.append(f"""<a class="report-card" href="{link}">
+          <div class="report-card-top"><span class="period-cell">{display_period}</span><span class="status-badge {status_class}">{status_label}</span></div>
+          <div class="report-card-brief">{escape(brief)}</div>
+          <span class="report-card-action">View report →</span>
+        </a>""")
+        else:
+            mobile_cards.append(f"""<article class="report-card">
+          <div class="report-card-top"><span class="period-cell">{display_period}</span><span class="status-badge {status_class}">{status_label}</span></div>
+          <div class="report-card-brief">{escape(brief)}</div>
+        </article>""")
     analyzed_count = sum(item["status"] == "PRESENT" for item in inventory)
-    missing_count = len(inventory) - analyzed_count
+    document_count = sum(item.get("document_count", 0) for item in inventory)
+    covered_periods = [item["period"] for item in inventory if item["status"] == "PRESENT"]
+    coverage_since = min((period_sort_key(period), period) for period in covered_periods)[1] if covered_periods else None
     source_index = SOURCES_DIR / company["slug"] / "INDEX.md"
     source_link = (
         f'<a class="header-link" href="../sources/{company["slug"]}/INDEX.md">Official source index</a>'
@@ -159,15 +189,34 @@ def render_company_page(company, inventory):
         else ""
     )
     rows_html = ''.join(rows) or '<tr><td colspan="4">No reports available yet. Coverage is planned.</td></tr>'
+    mobile_html = ''.join(mobile_cards) or '<article class="report-card">No reports available yet. Coverage is planned.</article>'
+    logo = company.get("logo")
+    logo_html = (
+        f'<div class="header-logo-stage"><img class="header-logo" src="../assets/company-logos/{logo}" alt="{escape(company["name"])} logo"></div>'
+        if logo
+        else ""
+    )
+    description = escape(company.get("description", "Independent investor analysis based on official company materials."))
+    latest_html = (
+        f"""<section aria-labelledby="latest-heading"><h2 class="section-heading" id="latest-heading">Latest analysis</h2>
+<article class="latest-report"><div><div class="latest-label">Latest report</div><div class="latest-period">{latest_report["period"]}</div></div>
+<div class="latest-brief">{escape(latest_report["brief"])}</div><a class="view-btn" href="{latest_report["link"]}">Read latest report</a></article></section>"""
+        if latest_report
+        else ""
+    )
+    coverage_value = format_period(coverage_since) if coverage_since else "Planned"
+    archive_heading = "Report archive" if inventory else "Coverage status"
     return f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{escape(company["name"])} Investor Reports</title><style>{PAGE_STYLE}</style></head><body><main class="container">
-<header class="header"><h1>{escape(company["name"])} Report History</h1><p>Period-level investor briefs reconciling management narratives with official reported figures.</p>
-<a class="header-link" href="../index.html">All companies</a>{source_link}</header>
+<header class="header"><div class="header-company">{logo_html}<div><h1>{escape(company["name"])} Investor Reports</h1><p>{description}</p><div class="header-meta">{escape(company["ticker"])} · Independent, evidence-based analysis</div></div></div>
+<nav class="header-actions" aria-label="Company links"><a class="header-link" href="../index.html">All companies</a>{source_link}</nav></header>
 <div class="stats-bar"><div class="stat-card"><div class="stat-value">{analyzed_count}</div><div class="stat-label">Analyzed reports</div></div>
-<div class="stat-card"><div class="stat-value">{missing_count}</div><div class="stat-label">Pending analysis</div></div>
-<div class="stat-card"><div class="stat-value">{escape(company["ticker"])}</div><div class="stat-label">Ticker</div></div></div>
-<div class="table-wrap"><table class="dashboard-table"><thead><tr><th>Period</th><th>Status</th><th>One-line verdict</th><th>Action</th></tr></thead>
-<tbody>{rows_html}</tbody></table></div></main></body></html>
+<div class="stat-card"><div class="stat-value">{coverage_value}</div><div class="stat-label">Coverage since</div></div>
+<div class="stat-card"><div class="stat-value">{document_count}</div><div class="stat-label">Official source documents</div></div></div>
+{latest_html}<section aria-labelledby="archive-heading"><h2 class="section-heading" id="archive-heading">{archive_heading}</h2>
+<div class="table-wrap"><table class="dashboard-table"><thead><tr><th>Period</th><th>Status</th><th>Brief</th><th>Action</th></tr></thead>
+<tbody>{rows_html}</tbody></table></div><div class="mobile-report-list">{mobile_html}</div></section>
+<footer class="page-footer"><span>Independent analysis for informational purposes.</span><span>Not investment advice · Verify primary sources</span></footer></main></body></html>
 """
 
 
