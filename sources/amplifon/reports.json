@@ -1,0 +1,115 @@
+{
+  "company": "Amplifon",
+  "reports": [
+    {
+      "period": "2024-q1",
+      "title": "Interim Financial Report as at 31 March 2024",
+      "kind": "financial-report",
+      "local_file": "2024-q1/financial-report.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/financial-reports/2024/Interim-Report-Q1-2024-15-05-2024.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 2899799,
+      "sha256": "a84dc09427d31b862a95bde12e3f9b8baaa9ada92c5ba0b7bac7bde05aeb4425"
+    },
+    {
+      "period": "2024-h1",
+      "title": "Interim Financial Report as at 30 June 2024",
+      "kind": "financial-report",
+      "local_file": "2024-h1/financial-report.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/financial-reports/2024/Interim%20Financial%20Report%20as%20at%2030%20June%202024_ENG.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 2245808,
+      "sha256": "71972d4a15a39dee382c24e376ae4017b40a7d22744d88847eef4178ce59fa9b"
+    },
+    {
+      "period": "2024-9m",
+      "title": "Interim Financial Report as at 30 September 2024",
+      "kind": "financial-report",
+      "local_file": "2024-9m/financial-report.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/financial-reports/2024/Interim%20Financial%20Report%20as%20at%2030%20September%202024.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 3077722,
+      "sha256": "f606249c3264964115395e259bb13bec4e70bf5de57f00e9027d8b2d91ba537e"
+    },
+    {
+      "period": "2024-fy",
+      "title": "Annual Report 2024",
+      "kind": "annual-report",
+      "local_file": "2024-fy/annual-report.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/financial-reports/2025/250321_Amplifon_REPORT_ENG_WEB.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 18805194,
+      "sha256": "f0355c5330b9f32e54267f363863d50d1be80e2f444af09fd571efc83a98f4ac"
+    },
+    {
+      "period": "2025-q1",
+      "title": "Interim Financial Report as at 31 March 2025",
+      "kind": "financial-report",
+      "local_file": "2025-q1/financial-report.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/financial-reports/2025/Interim%20Financial%20Report%20as%20at%2031%20March%202025.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 2941857,
+      "sha256": "4070ca9c9205067eab95304ab8c261fddb90bb7deb0fb6af533eb3b07840a69f"
+    },
+    {
+      "period": "2025-h1",
+      "title": "Interim Financial Report as at 30 June 2025",
+      "kind": "financial-report",
+      "local_file": "2025-h1/financial-report.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/financial-reports/2025/Interim%20Financial%20Report%20as%20at%2030%20June%202025.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 3286290,
+      "sha256": "705275a2a50d355bed32b9eab627eac68399bae8a1cf8da399590c505c060170"
+    },
+    {
+      "period": "2025-9m",
+      "title": "Interim Financial Report as at 30 September 2025",
+      "kind": "financial-report",
+      "local_file": "2025-9m/financial-report.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/financial-reports/2025/Interim%20Financial%20Report%20as%20at%2030%20September%202025.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 3008088,
+      "sha256": "a4d45cfb07d5a3adea74d9fc7b8aee2b66f502c4d86096724aaba7260a00f23d"
+    },
+    {
+      "period": "2025-fy",
+      "title": "Annual Report 2025",
+      "kind": "annual-report",
+      "local_file": "2025-fy/annual-report.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/financial-reports/2026/Annual-Report-eng-25-03-2026.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 20161644,
+      "sha256": "26a916adf6257b9f9c75e83be90cb38c238a6a85bb4af3c2ee2795ffde48a999"
+    },
+    {
+      "period": "2025-fy",
+      "title": "FY 2025 Results Presentation",
+      "kind": "results-presentation",
+      "local_file": "2025-fy/results-presentation.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/presentations-webcast/2026/FY-2025-Results-Presentation.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 682051,
+      "sha256": "3d3c5a835f9fb94e0dd0369ea7fa94850696731fca74abd10937957a3dc3b12b"
+    },
+    {
+      "period": "2026-q1",
+      "title": "Interim Financial Report as at 31 March 2026",
+      "kind": "financial-report",
+      "local_file": "2026-q1/financial-report.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/financial-reports/2026/Interim%20Financial%20Report%20as%20at%2031%20March%202026.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 2719029,
+      "sha256": "cb5f30d5ab8d34b6f2ab936cbda26727a633fc7c653a8edf51e65ce15609f5e6"
+    },
+    {
+      "period": "2026-q1",
+      "title": "Q1 2026 Results Presentation",
+      "kind": "results-presentation",
+      "local_file": "2026-q1/results-presentation.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/presentations-webcast/2026/Q1-2026-Results-Presentation.pdf",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 423587,
+      "sha256": "9f81b87c16c9f5987a298bcd10acd3de83237e76ef80dd05a29c88d4013eb983"
+    }
+  ]
+}

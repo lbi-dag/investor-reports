@@ -1,0 +1,4 @@
+interface:
+  display_name: "Read Between Financial Lines"
+  short_description: "Decode corporate language in financial reports"
+  default_prompt: "Use $read-between-financial-lines to analyze these official company materials and produce a skeptical, sourced investor brief."
