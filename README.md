@@ -85,6 +85,12 @@ Inventory the entire data lake and update the Market Reality Dashboard:
 python3 scripts/inventory_reports.py
 ```
 
+Regenerate the standardized interim-period Amplifon reports:
+
+```bash
+python3 scripts/generate_amplifon_interim_reports.py
+```
+
 Regenerate every Markdown extract after improving or upgrading the extractor:
 
 ```bash
@@ -121,6 +127,9 @@ The skill requires:
 ```bash
 npm test
 ```
+
+The test command validates report structure and all local dashboard, report,
+and source links.
 
 ## Run The Static Site
 

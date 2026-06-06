@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-06T14:17:07.864107",
+  "generated_at": "2026-06-06T15:23:26.088488",
   "skill_version": "1.1.0",
   "inventory": [
     {
       "company": "amplifon",
       "period": "2024-q1",
-      "status": "MISSING",
+      "status": "PRESENT",
       "document_count": 1,
       "documents": [
         "Interim Financial Report as at 31 March 2024"
@@ -14,7 +14,7 @@
     {
       "company": "amplifon",
       "period": "2024-h1",
-      "status": "MISSING",
+      "status": "PRESENT",
       "document_count": 1,
       "documents": [
         "Interim Financial Report as at 30 June 2024"
@@ -23,7 +23,7 @@
     {
       "company": "amplifon",
       "period": "2024-9m",
-      "status": "MISSING",
+      "status": "PRESENT",
       "document_count": 1,
       "documents": [
         "Interim Financial Report as at 30 September 2024"
@@ -41,7 +41,7 @@
     {
       "company": "amplifon",
       "period": "2025-q1",
-      "status": "MISSING",
+      "status": "PRESENT",
       "document_count": 1,
       "documents": [
         "Interim Financial Report as at 31 March 2025"
@@ -50,7 +50,7 @@
     {
       "company": "amplifon",
       "period": "2025-h1",
-      "status": "MISSING",
+      "status": "PRESENT",
       "document_count": 1,
       "documents": [
         "Interim Financial Report as at 30 June 2025"
@@ -59,7 +59,7 @@
     {
       "company": "amplifon",
       "period": "2025-9m",
-      "status": "MISSING",
+      "status": "PRESENT",
       "document_count": 1,
       "documents": [
         "Interim Financial Report as at 30 September 2025"

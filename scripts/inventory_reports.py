@@ -4,6 +4,10 @@ import os
 import re
 from pathlib import Path
 from datetime import datetime
+try:
+    from scripts.validate_reports import validate_report
+except ModuleNotFoundError:
+    from validate_reports import validate_report
 
 # Configuration
 REPORTS_DIR = Path("reports")
@@ -16,6 +20,8 @@ def get_existing_reports():
     for company in COMPANIES:
         reports[company] = []
         for file in REPORTS_DIR.glob(f"{company}-*.html"):
+            if validate_report(file):
+                continue
             # Extract period from filename, e.g., amplifon-2025.html -> 2025
             period = file.stem.replace(f"{company}-", "")
             reports[company].append(period)
