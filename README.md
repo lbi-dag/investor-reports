@@ -6,15 +6,22 @@ The project focuses on reading beyond management's headline narrative:
 reconciling reported and adjusted figures, identifying selective comparisons,
 and translating material corporate language into evidence-based plain English.
 
+## Market Reality Dashboard
+
+The repository features a [Market Reality Dashboard](index.html) that tracks the gap between corporate narratives and financial reality. It provides real-time statistics on report coverage and surface-extracts key AI verdicts.
+
 ## Repository Structure
 
-- `index.html`: Static report-library landing page.
-- `reports/`: Published investor briefs.
+- `index.html`: Market Reality Dashboard and report-library landing page.
+- `reports/`: Published investor briefs and reporting inventory.
 - `sources/amplifon/`: Amplifon source manifest, generated index, and page-marked Markdown extracts.
 - `scripts/sync_amplifon_reports.py`: Source discovery, validation, extraction, and indexing pipeline.
+- `scripts/inventory_reports.py`: Batch analysis inventory and dashboard generator.
 - `scripts/extract_pdf_markdown.mjs`: PDF.js-based page-aware text extractor.
 - `.agents/skills/read-between-financial-lines/`: Reusable financial-analysis skill.
 - `.github/workflows/sync-amplifon-reports.yml`: Twice-monthly source sync.
+- `ROADMAP.md`: Strategic direction and upcoming features.
+- `AGENTS.md`: Canonical instructions for AI agents (Gemini, Claude, Copilot).
 
 ## Source Storage
 
@@ -68,6 +75,14 @@ Check whether new reports exist without downloading them:
 
 ```bash
 python3 scripts/sync_amplifon_reports.py --check
+```
+
+## Batch Analysis & Dashboard
+
+Inventory the entire data lake and update the Market Reality Dashboard:
+
+```bash
+python3 scripts/inventory_reports.py
 ```
 
 Regenerate every Markdown extract after improving or upgrading the extractor:

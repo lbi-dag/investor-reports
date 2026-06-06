@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amplifon FY 2024 Investor Report</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Segoe UI", Arial, sans-serif; background: #f4f4f6; color: #1a1a2e; font-size: 13px; }
+    a { color: #8b0013; }
+    .back { display: block; max-width: 960px; margin: 16px auto 0; padding: 0 8px; text-decoration: none; color: #1f3a8a; }
+    .page { max-width: 960px; margin: 12px auto 24px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.1); }
+    .header { display: flex; justify-content: space-between; gap: 20px; align-items: flex-end; padding: 26px 32px 20px; background: linear-gradient(135deg, #c0001a, #69000e); color: #fff; }
+    .header h1 { font-size: 24px; letter-spacing: .3px; }
+    .header p { margin-top: 4px; opacity: .86; }
+    .header-meta { text-align: right; font-size: 11px; line-height: 1.7; }
+    .badge { display: inline-block; margin-top: 6px; padding: 3px 11px; border: 1px solid rgba(255,255,255,.4); border-radius: 20px; background: rgba(255,255,255,.16); }
+    .verdict { padding: 13px 22px; background: #fff8e1; border-left: 5px solid #f59e0b; line-height: 1.6; }
+    .verdict strong { color: #92400e; }
+    .consistency-score { padding: 10px 22px; background: #f0f9ff; border-left: 5px solid #0ea5e9; font-size: 12px; border-bottom: 1px solid #e5e7eb; }
+    .consistency-score strong { color: #0369a1; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid #e5e7eb; }
+    .kpi { padding: 16px 12px; text-align: center; border-right: 1px solid #e5e7eb; }
+    .kpi:last-child { border-right: 0; }
+    .kpi .value { font-size: 20px; font-weight: 750; color: #b00018; }
+    .kpi .label { margin-top: 2px; color: #6b7280; font-size: 10px; text-transform: uppercase; letter-spacing: .5px; }
+    .kpi .change { margin-top: 4px; font-size: 11px; }
+    .up { color: #047857; } .down { color: #b91c1c; } .neutral { color: #4b5563; }
+    .content { padding: 22px 26px 10px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+    section { margin-bottom: 22px; }
+    h2 { margin-bottom: 11px; padding-bottom: 5px; color: #b00018; border-bottom: 2px solid #f8d7dc; font-size: 13px; text-transform: uppercase; letter-spacing: .6px; }
+    .item { margin-bottom: 11px; line-height: 1.55; color: #374151; }
+    .item strong { color: #111827; }
+    .cite { color: #6b7280; font-size: 10.5px; white-space: nowrap; }
+    table { width: 100%; border-collapse: collapse; }
+    th { padding: 6px; border-bottom: 1px solid #d1d5db; color: #6b7280; font-size: 10px; text-align: left; text-transform: uppercase; }
+    td { padding: 7px 6px; border-bottom: 1px solid #eef0f3; font-size: 11.5px; }
+    .pill { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 10px; font-weight: 650; }
+    .green { background: #d1fae5; color: #065f46; }
+    .amber { background: #fef3c7; color: #92400e; }
+    .red { background: #fee2e2; color: #991b1b; }
+    .decode { padding: 9px 11px; margin-bottom: 8px; border-left: 3px solid #d1d5db; border-radius: 5px; background: #fafafa; }
+    .decode .claim { color: #6b7280; font-size: 11px; font-style: italic; }
+    .decode .plain { margin-top: 4px; line-height: 1.5; color: #1f2937; }
+    .decode .confidence { margin-top: 4px; color: #6b7280; font-size: 10px; }
+    .outlook { padding: 15px 17px; border-radius: 8px; background: #f8fafc; }
+    .outlook p { margin-bottom: 9px; color: #374151; line-height: 1.6; }
+    .outlook p:last-child { margin-bottom: 0; }
+    .sources { padding: 0 26px 22px; color: #4b5563; }
+    .sources ul { padding-left: 18px; line-height: 1.7; }
+    .footer { display: flex; justify-content: space-between; gap: 15px; padding: 11px 24px; background: #1a1a2e; color: #9ca3af; font-size: 10.5px; }
+    .metadata { padding: 12px 24px; background: #f9fafb; color: #6b7280; font-size: 10px; border-top: 1px solid #e5e7eb; line-height: 1.6; }
+    .metadata-label { font-weight: 650; color: #4b5563; text-transform: uppercase; margin-right: 4px; }
+    @media (max-width: 720px) {
+      .page { margin: 10px 8px 20px; }
+      .header, .footer { display: block; }
+      .header-meta { margin-top: 12px; text-align: left; }
+      .kpis, .grid { grid-template-columns: 1fr 1fr; }
+      .kpi:nth-child(2) { border-right: 0; }
+      .content { padding: 18px 16px 4px; }
+      .sources { padding: 0 16px 18px; }
+      .table-wrap { overflow-x: auto; }
+    }
+    @media (max-width: 440px) {
+      .kpis, .grid { grid-template-columns: 1fr; }
+      .kpi { border-right: 0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="back" href="../index.html">← Back to Dashboard</a>
+  <main class="page">
+    <header class="header">
+      <div>
+        <h1>Amplifon S.p.A. — FY 2024 Results</h1>
+        <p>Independent, evidence-based investor summary</p>
+      </div>
+      <div class="header-meta">
+        Ticker: AMP:IM · Euronext Milan<br>
+        Year ended December 31, 2024<br>
+        <span class="badge">Growth at a cost: Debt up, Margins down</span>
+      </div>
+    </header>
+
+    <div class="verdict">
+      <strong>One-line verdict:</strong> Amplifon delivered record revenue driven by an aggressive US acquisition strategy, but the "growth-at-any-cost" approach led to significant margin compression and an 8.5% recurring profit decline as high interest rates and restructuring costs bit into the bottom line.
+    </div>
+
+    <div class="consistency-score">
+      <strong>Historical Consistency Score: Medium.</strong> While dividend stability was maintained, the "improvement in profitability" narrative from H1 (margin +40bps) completely reversed by year-end (margin -40bps), with Q4 showing a sharp 190bps year-over-year collapse.
+    </div>
+
+    <div class="kpis">
+      <div class="kpi">
+        <div class="value">€2.41B</div>
+        <div class="label">Reported Revenue</div>
+        <div class="change up">▲ 6.6% YoY</div>
+      </div>
+      <div class="kpi">
+        <div class="value">3.4%</div>
+        <div class="label">Organic Growth</div>
+        <div class="change neutral">Soft core markets</div>
+      </div>
+      <div class="kpi">
+        <div class="value">23.6%</div>
+        <div class="label">Rec. EBITDA Margin</div>
+        <div class="change down">▼ 40 bps YoY</div>
+      </div>
+      <div class="kpi">
+        <div class="value">€151.7M</div>
+        <div class="label">Rec. Group Profit</div>
+        <div class="change down">▼ 8.5% YoY</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="grid">
+        <div>
+          <section>
+            <h2>What Is Genuinely Working</h2>
+            <p class="item"><strong>The US is now the primary engine.</strong> For the first time, the US was the Group's top market by revenue, validating the long-term expansion strategy. <a class="cite" href="../sources/amplifon/2024-fy/annual-report.md">Annual Report p. 6</a></p>
+            <p class="item"><strong>M&A machine is operating at scale.</strong> Amplifon successfully added ~400 new stores in 2024, including a major Uruguayan acquisition, reaching over 10,000 points of sale worldwide. <a class="cite" href="../sources/amplifon/2024-fy/annual-report.md">Annual Report p. 11</a></p>
+            <p class="item"><strong>Cash generation remains resilient.</strong> Free cash flow grew 10% to €175.9M, providing necessary liquidity despite the higher debt service and acquisition spend. <a class="cite" href="../sources/amplifon/2024-fy/annual-report.md">Annual Report p. 8</a></p>
+            <p class="item"><strong>Americas underlying sales growth was stellar.</strong> Organic growth in the Americas reached 10.6%, significantly outperforming the broader market. <a class="cite" href="../sources/amplifon/2024-fy/annual-report.md">Annual Report p. 44</a></p>
+          </section>
+
+          <section>
+            <h2>Track Record and Consistency</h2>
+            <p class="item"><strong>H2 Margin Reversal:</strong> In H1 2024, management reported a 40bps margin <em>improvement</em>. By FY 2024, this became a 40bps <em>decline</em>, implying a massive deterioration in the second half of the year. <a class="cite" href="../sources/amplifon/2024-h1/financial-report.md">H1 Report p. 6</a> vs <a class="cite" href="../sources/amplifon/2024-fy/annual-report.md">FY Report p. 28</a></p>
+            <p class="item"><strong>Argentina Inflation Tail-wind:</strong> Organic growth was flattered by Argentinian inflation accounting (+0.2% contribution), which management frames as "solid organic performance." <a class="cite" href="../sources/amplifon/2024-fy/annual-report.md">Annual Report p. 42</a></p>
+          </section>
+        </div>
+
+        <div>
+          <section>
+            <h2>What The Headline Obscures</h2>
+            <p class="item"><strong>Aggressive M&A is diluting margins.</strong> The EBITDA margin in the Americas fell 130bps to 25.5%, specifically cited as a "dilutive effect" of accelerated direct store network growth. <a class="cite" href="../sources/amplifon/2024-fy/annual-report.md">Annual Report p. 48</a></p>
+            <p class="item"><strong>Softness in core Europe is persistent.</strong> EMEA organic growth was a weak 0.9%, dragged down by the French market and operational issues in Spain. <a class="cite" href="../sources/amplifon/2024-fy/annual-report.md">Annual Report p. 43</a></p>
+            <p class="item"><strong>Debt is rising faster than earnings.</strong> Net financial debt rose €110M (+13%) as M&A cash-outs nearly doubled from €108M to €192M. <a class="cite" href="../sources/amplifon/2024-fy/annual-report.md">Annual Report p. 34</a></p>
+            <p class="item"><strong>External factors adding pressure.</strong> Profits were squeezed by higher financial expenses (+€10.6M) and weather events ("DANA" in Spain). <a class="cite" href="../sources/amplifon/2024-fy/annual-report.md">Annual Report p. 50, 54</a></p>
+          </section>
+
+          <section>
+            <h2>Corporate Language, Decoded</h2>
+            <div class="decode">
+              <div class="claim">“Solid organic performance”</div>
+              <div class="plain">3.4% organic growth is barely above market-wide inflation and includes a 0.2% contribution from Argentinian hyperinflation accounting.</div>
+              <div class="confidence">Confidence: High · Annual Report p. 42</div>
+            </div>
+            <div class="decode">
+              <div class="claim">“Preparing to reap fruits of long-awaited recovery”</div>
+              <div class="plain">Management is doubling down on investment and store count in Europe despite 0.9% organic growth, hoping for a market bounce that has not yet materialized.</div>
+              <div class="confidence">Confidence: Medium · Annual Report p. 6, 43</div>
+            </div>
+            <div class="decode">
+              <div class="claim">“Solidity confirmed by main balance sheet indicators”</div>
+              <div class="plain">Net debt rose 13% and interest expenses rose 17.6%, though leverage remains at a manageable 1.63x.</div>
+              <div class="confidence">Confidence: High · Annual Report p. 8, 30</div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section>
+        <h2>What To Watch Next</h2>
+        <div class="outlook">
+          <p><strong>Bull case:</strong> The European market recovery finally arrives in 2025, allowing the massive 2024 investments to scale; the US direct-store network pivots from "dilutive" to "accretive" as integration costs fade.</p>
+          <p><strong>Bear case:</strong> European markets remain soft, forcing further restructuring; high interest rates continue to erode the profit benefits of revenue growth; debt leverage creeps toward 2.0x if M&A pace doesn't slow.</p>
+          <p><strong>Measurable watchlist:</strong> EMEA organic growth (target >2%); Americas EBITDA margin (looking for return to 26%+); Net financial debt vs leverage ratio; Impact of 2025 European market "normalization" on top-line.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="sources">
+      <h2>Sources And Caveats</h2>
+      <ul>
+        <li><a href="../sources/amplifon/2024-fy/annual-report.md">Amplifon Annual Report 2024</a></li>
+        <li><a href="../sources/amplifon/2024-h1/financial-report.md">Amplifon H1 2024 Interim Report</a></li>
+        <li>Note: Figures for 2024-fy include impacts from IAS 29 (Argentina) and non-recurring integration costs.</li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <span>Amplifon S.p.A. · FY 2024 · Independent analysis for informational purposes</span>
+      <span>Not investment advice · Always verify primary sources</span>
+    </footer>
+    
+    <div class="metadata">
+      <div><span class="metadata-label">Analysis Date:</span> 2026-06-06</div>
+      <div><span class="metadata-label">Skill Version:</span> 1.1.0</div>
+      <div><span class="metadata-label">Model Version:</span> Gemini 2.0 Flash</div>
+      <div><span class="metadata-label">Source SHA-256:</span> f0355c5330b9f32e54267f363863d50d1be80e2f444af09fd571efc83a98f4ac</div>
+    </div>
+  </main>
+</body>
+</html>

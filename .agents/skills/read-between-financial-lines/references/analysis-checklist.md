@@ -34,6 +34,14 @@ Record each source's title, publication date, covered period, URL or file path, 
 - Does it change the comparison period or metric definition?
 - Does it celebrate beating reduced guidance?
 
+### Historical Consistency & Track Record
+
+- **Dropped Metrics:** Has a previously highlighted KPI (e.g., "customer acquisition cost" or "net promoter score") disappeared from the current report?
+- **Restatements:** Do current "prior year" comparables match the figures actually reported in the prior year's filing?
+- **Narrative Shifts:** Has the strategic focus shifted (e.g., from "growth at all costs" to "efficiency") without acknowledging the pivot or the results of the prior strategy?
+- **Guidance Reconciliation:** How does current performance compare to the specific targets set 6, 12, or 24 months ago?
+- **"One-off" Persistence:** Are the same "one-time" restructuring charges appearing in multiple consecutive years?
+
 ### Adjusted Versus Reported
 
 - How large is the adjustment gap?
