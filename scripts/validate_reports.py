@@ -25,10 +25,15 @@ class LinkParser(HTMLParser):
         self.links = []
 
     def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
         if tag == "a":
-            href = dict(attrs).get("href")
+            href = attrs.get("href")
             if href:
                 self.links.append(href)
+        if tag == "img":
+            src = attrs.get("src")
+            if src:
+                self.links.append(src)
 
 
 def local_link_errors(html_path):

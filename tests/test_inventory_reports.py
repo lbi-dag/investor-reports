@@ -37,9 +37,13 @@ class TestInventoryReports(unittest.TestCase):
         html = render_company_directory([{"company": "amplifon", "status": "PRESENT"}])
         self.assertIn('href="companies/amplifon.html"', html)
         self.assertIn('href="companies/starkey.html"', html)
+        self.assertIn('href="companies/gn.html"', html)
         self.assertIn("Coverage planned", html)
         self.assertIn("Tracking the gap between corporate narratives and financial reality.", html)
         self.assertIn("<svg", html)
+        self.assertIn('src="assets/company-logos/amplifon.svg"', html)
+        self.assertIn('src="assets/company-logos/starkey.svg"', html)
+        self.assertIn('src="assets/company-logos/gn.svg"', html)
 
     def test_company_page_links_reports_from_company_directory(self):
         inventory = [{"company": "amplifon", "period": "2025-fy", "status": "PRESENT"}]

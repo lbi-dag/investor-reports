@@ -15,8 +15,9 @@ SOURCES_DIR = Path("sources")
 COMPANY_PAGES_DIR = Path("companies")
 COMPANIES = ["amplifon"]
 COMPANY_DIRECTORY = [
-    {"slug": "amplifon", "name": "Amplifon", "ticker": "AMP:IM", "description": "Global hearing-care retailer with coverage from 2024 onward."},
-    {"slug": "starkey", "name": "Starkey", "ticker": "Private", "description": "Hearing-aid manufacturer. Source collection and analysis are planned."},
+    {"slug": "amplifon", "name": "Amplifon", "ticker": "AMP:IM", "logo": "amplifon.svg", "logo_class": "", "description": "Global hearing-care retailer with coverage from 2024 onward."},
+    {"slug": "starkey", "name": "Starkey", "ticker": "Private", "logo": "starkey.svg", "logo_class": "", "description": "Hearing-aid manufacturer. Source collection and analysis are planned."},
+    {"slug": "gn", "name": "GN Group", "ticker": "GN.CO", "logo": "gn.svg", "logo_class": "logo-stage-dark", "description": "Hearing, enterprise-audio, and gaming technology group. Coverage is planned."},
 ]
 SKILL_VERSION = "1.1.0"  # Increment when SKILL.md or references change
 
@@ -31,6 +32,8 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #
 .stat-card,.company-card { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px #0000000d; border-left: 4px solid #1f3a8a; }
 .stat-value { font-size: 24px; font-weight: 700; color: #111827; }.stat-label { font-size: 12px; color: #6b7280; text-transform: uppercase; margin-top: 4px; }
 .company-card h2 { margin-bottom: 6px; }.company-card p { color: #4b5563; line-height: 1.5; margin-bottom: 14px; }.company-meta { color: #6b7280; font-size: 12px; margin-bottom: 14px; }
+.logo-stage { height: 92px; display: flex; align-items: center; justify-content: center; margin: -4px -4px 18px; padding: 18px; border-radius: 9px; background: #f8fafc; border: 1px solid #eef0f3; }
+.logo-stage-dark { background: #253746; border-color: #253746; }.company-logo { display: block; max-width: 210px; max-height: 56px; width: auto; height: auto; }
 .dashboard-table { width: 100%; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px #00000014; border-collapse: collapse; overflow: hidden; }
 .dashboard-table th { background: #f9fafb; padding: 16px; text-align: left; font-size: 12px; text-transform: uppercase; color: #4b5563; border-bottom: 1px solid #e5e7eb; }
 .dashboard-table td { padding: 16px; border-bottom: 1px solid #f3f4f6; font-size: 14px; }.verdict-cell { max-width: 480px; color: #374151; font-style: italic; }
@@ -112,6 +115,7 @@ def render_company_directory(inventory):
             status = "Coverage planned"
         action = f'<a href="companies/{company["slug"]}.html" class="view-btn">View company</a>'
         cards.append(f"""<article class="company-card">
+          <div class="logo-stage {company["logo_class"]}"><img class="company-logo" src="assets/company-logos/{company["logo"]}" alt="{escape(company["name"])} logo"></div>
           <h2>{escape(company["name"])}</h2>
           <div class="company-meta">{escape(company["ticker"])} · {status}</div>
           <p>{escape(company["description"])}</p>
