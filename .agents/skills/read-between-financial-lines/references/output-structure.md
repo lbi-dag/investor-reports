@@ -10,25 +10,32 @@ Use this structure unless the user requests another format:
 2. **One-line verdict**
    - Balanced summary of operating direction, financial condition, and main uncertainty.
 
-3. **Key numbers**
+3. **Historical consistency score**
+   - **High/Medium/Low**: Based on metric stability, restatement frequency, and guidance delivery.
+
+4. **Key numbers**
    - Compact table with reported value, comparison, and why it matters.
 
-4. **What is genuinely working**
+5. **What is genuinely working**
    - Durable strengths supported by evidence.
 
-5. **What the headline obscures**
+6. **What the headline obscures**
    - Weaknesses, adjustment gaps, cash/debt tensions, segment problems, or changed framing.
 
-6. **Corporate language, decoded**
+7. **Track record and consistency**
+   - Reconciliation of current performance against prior-period guidance.
+   - Identification of restated figures or dropped KPIs.
+
+8. **Corporate language, decoded**
    - Management phrase, plain English, evidence, confidence, and benign alternative when relevant.
 
-7. **Bull case and bear case**
+9. **Bull case and bear case**
    - Conditions rather than unsupported predictions.
 
-8. **What to watch**
+10. **What to watch**
    - Measurable outcomes for the next reporting periods.
 
-9. **Sources and caveats**
+11. **Sources and caveats**
    - Primary-source citations and unresolved questions.
 
 ## Writing Decoded Language
@@ -48,6 +55,11 @@ Avoid unsupported snark:
 
 When producing an HTML report:
 
+- **Metadata Header (Mandatory)**: Include a hidden or footer section with:
+    - `Analysis Date`: ISO 8601 date of report generation.
+    - `Skill Version`: The version of the `read-between-financial-lines` skill used.
+    - `Model Version`: The LLM model name used (e.g., Gemini 1.5 Pro).
+    - `Source SHA-256`: The checksums of the primary documents analyzed.
 - Preserve the repository's visual conventions where practical.
 - Include visible source citations or source links.
 - Use semantic headings, tables, and navigation.

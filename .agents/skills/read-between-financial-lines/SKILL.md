@@ -17,6 +17,7 @@ Produce a fair but skeptical investor analysis from primary company materials. T
 2. Build the factual baseline before interpreting.
    - Extract reported and adjusted revenue, growth, margins, profit, cash flow, debt, guidance, segment results, and capital allocation.
    - Record comparison periods, currencies, constant-currency claims, and management-defined measures.
+   - **Incorporate prior-period context:** Ingest at least one prior comparable period (e.g., prior year's annual report or same-quarter prior year) to identify baseline shifts, restatements, or changed KPIs.
    - Recalculate important changes when inputs are available.
    - Read [analysis-checklist.md](references/analysis-checklist.md) for the full review checklist.
 
@@ -26,6 +27,7 @@ Produce a fair but skeptical investor analysis from primary company materials. T
    - Compare profit with cash generation and cash generation with debt movement.
    - Compare group-level claims with weak segments or geographies.
    - Compare current guidance with prior targets and actual delivery.
+   - **Test for historical consistency:** Identify "conveniently dropped" metrics, changed accounting definitions, or narrative shifts that contradict prior-period guidance or strategy.
    - Identify omitted context, changed definitions, selective time windows, and recurring "one-offs."
 
 4. Decode corporate language.
@@ -52,6 +54,8 @@ Produce a fair but skeptical investor analysis from primary company materials. T
 
 - Cite every material factual claim with a page, section, document title, or URL.
 - Use primary official sources for company-specific facts. Use secondary sources only for external context and label them.
+- **Mandatory Look-back:** Any claim of "improvement" or "record" performance must be tested against at least one prior comparable period.
+- **Track Record:** When evaluating guidance, cite the company's prior success or failure in meeting similar targets.
 - Never imply that adjusted metrics are inherently misleading; explain the adjustment and test whether it is economically meaningful or recurring.
 - Never call language deceptive without strong evidence of contradiction or material omission.
 - Do not invent motives, forecasts, peer comparisons, or valuation conclusions.

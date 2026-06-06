@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-06-06T14:01:56.623169",
+  "skill_version": "1.1.0",
+  "inventory": [
+    {
+      "company": "amplifon",
+      "period": "2024-q1",
+      "status": "MISSING",
+      "document_count": 1,
+      "documents": [
+        "Interim Financial Report as at 31 March 2024"
+      ]
+    },
+    {
+      "company": "amplifon",
+      "period": "2024-h1",
+      "status": "MISSING",
+      "document_count": 1,
+      "documents": [
+        "Interim Financial Report as at 30 June 2024"
+      ]
+    },
+    {
+      "company": "amplifon",
+      "period": "2024-9m",
+      "status": "MISSING",
+      "document_count": 1,
+      "documents": [
+        "Interim Financial Report as at 30 September 2024"
+      ]
+    },
+    {
+      "company": "amplifon",
+      "period": "2024-fy",
+      "status": "MISSING",
+      "document_count": 1,
+      "documents": [
+        "Annual Report 2024"
+      ]
+    },
+    {
+      "company": "amplifon",
+      "period": "2025-q1",
+      "status": "MISSING",
+      "document_count": 1,
+      "documents": [
+        "Interim Financial Report as at 31 March 2025"
+      ]
+    },
+    {
+      "company": "amplifon",
+      "period": "2025-h1",
+      "status": "MISSING",
+      "document_count": 1,
+      "documents": [
+        "Interim Financial Report as at 30 June 2025"
+      ]
+    },
+    {
+      "company": "amplifon",
+      "period": "2025-9m",
+      "status": "MISSING",
+      "document_count": 1,
+      "documents": [
+        "Interim Financial Report as at 30 September 2025"
+      ]
+    },
+    {
+      "company": "amplifon",
+      "period": "2025-fy",
+      "status": "PRESENT",
+      "document_count": 2,
+      "documents": [
+        "Annual Report 2025",
+        "FY 2025 Results Presentation"
+      ]
+    },
+    {
+      "company": "amplifon",
+      "period": "2026-q1",
+      "status": "PRESENT",
+      "document_count": 2,
+      "documents": [
+        "Interim Financial Report as at 31 March 2026",
+        "Q1 2026 Results Presentation"
+      ]
+    }
+  ]
+}
