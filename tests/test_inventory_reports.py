@@ -38,6 +38,8 @@ class TestInventoryReports(unittest.TestCase):
         self.assertIn('href="companies/amplifon.html"', html)
         self.assertIn('href="companies/starkey.html"', html)
         self.assertIn("Coverage planned", html)
+        self.assertIn("Tracking the gap between corporate narratives and financial reality.", html)
+        self.assertIn("<svg", html)
 
     def test_company_page_links_reports_from_company_directory(self):
         inventory = [{"company": "amplifon", "period": "2025-fy", "status": "PRESENT"}]
