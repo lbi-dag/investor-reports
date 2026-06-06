@@ -14,6 +14,7 @@ REQUIRED_MARKERS = (
     "Sources And Caveats",
     "Analysis Date:",
     "Skill Version:",
+    "Model Version:",
     "Source SHA-256:",
 )
 
