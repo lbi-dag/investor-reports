@@ -52,13 +52,31 @@ def extract_verdict(html_path):
         pass
     return "Analysis pending..."
 
+def period_sort_key(period):
+    # Standardize period sorting: Year (2024) and Period (Q1 < H1 < 9M < FY)
+    parts = period.split('-')
+    year = int(parts[0])
+    suffix = parts[1].lower() if len(parts) > 1 else 'fy'
+    
+    # Define chronological weights for different reporting types
+    weights = {
+        'q1': 1,
+        'h1': 2,
+        'q2': 2,
+        '9m': 3,
+        'q3': 3,
+        'fy': 4,
+        'q4': 4
+    }
+    return (year, weights.get(suffix, 0))
+
 def update_index_html(inventory):
     analyzed_count = sum(1 for item in inventory if item["status"] == "PRESENT")
     missing_count = sum(1 for item in inventory if item["status"] == "MISSING")
     
     rows_html = ""
-    # Sort inventory by period descending
-    for item in sorted(inventory, key=lambda x: x["period"], reverse=True):
+    # Sort inventory by period descending (newest first) using custom key
+    for item in sorted(inventory, key=lambda x: period_sort_key(x["period"]), reverse=True):
         company = item["company"]
         period = item["period"]
         status = item["status"]
