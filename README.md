@@ -10,7 +10,16 @@ and translating material corporate language into evidence-based plain English.
 
 The root [company directory](index.html) lists covered and planned companies.
 Each covered company has a report-history dashboard, such as
-[Amplifon](companies/amplifon.html), with period-level verdicts and links.
+[Amplifon](companies/amplifon.html), with:
+
+- Company identity, ticker, coverage start, and official-source count
+- A featured link to the latest analysis
+- Human-readable reporting periods and analysis status
+- Short report briefs extracted from each report header badge
+- A desktop report archive and responsive mobile report cards
+
+The header badge is the report's concise archive summary. Keep it short,
+specific, and distinct from the longer one-line verdict inside the report.
 
 ## Repository Structure
 
@@ -87,6 +96,14 @@ Inventory the entire data lake and update the company directory and report dashb
 ```bash
 python3 scripts/inventory_reports.py
 ```
+
+The inventory command:
+
+1. Includes only reports that pass the report-structure validator.
+2. Matches source periods to published investor reports.
+3. Extracts each report's header badge for its dashboard brief.
+4. Regenerates `index.html`, every page in `companies/`, and
+   `reports/inventory.json`.
 
 Regenerate the standardized interim-period Amplifon reports:
 

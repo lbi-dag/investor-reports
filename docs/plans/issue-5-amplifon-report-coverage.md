@@ -12,24 +12,17 @@ Issue: https://github.com/lbi-dag/investor-reports/issues/5
 
 | Period | Official source extracts | HTML report | Required comparison context |
 | --- | ---: | --- | --- |
-| 2024 Q1 | 1 | Missing | No earlier repository source; state the limitation |
-| 2024 H1 | 1 | Missing | 2024 Q1 |
-| 2024 9M | 1 | Missing | 2024 H1 and 2024 Q1 |
+| 2024 Q1 | 1 | Present | No earlier repository source; state the limitation |
+| 2024 H1 | 1 | Present | 2024 Q1 |
+| 2024 9M | 1 | Present | 2024 H1 and 2024 Q1 |
 | 2024 FY | 1 | Present | 2024 H1 |
-| 2025 Q1 | 1 | Missing | 2024 Q1 and 2024 FY |
-| 2025 H1 | 1 | Missing | 2024 H1, 2025 Q1, and 2024 FY |
-| 2025 9M | 1 | Missing | 2024 9M, 2025 H1, and 2024 FY |
+| 2025 Q1 | 1 | Present | 2024 Q1 and 2024 FY |
+| 2025 H1 | 1 | Present | 2024 H1, 2025 Q1, and 2024 FY |
+| 2025 9M | 1 | Present | 2024 9M, 2025 H1, and 2024 FY |
 | 2025 FY | 2 | Present | 2024 FY |
 | 2026 Q1 | 2 | Present | 2025 Q1 and 2025 FY |
 
-Missing deliverables:
-
-- `reports/amplifon-2024-q1.html`
-- `reports/amplifon-2024-h1.html`
-- `reports/amplifon-2024-9m.html`
-- `reports/amplifon-2025-q1.html`
-- `reports/amplifon-2025-h1.html`
-- `reports/amplifon-2025-9m.html`
+All nine available Amplifon periods have a validated HTML investor report.
 
 ## Delivery Strategy
 
@@ -75,10 +68,23 @@ comparison context for the next period.
 - Run `python3 scripts/inventory_reports.py`.
 - Confirm every manifest period is marked `PRESENT`.
 - Confirm dashboard rows link to the correct report.
+- Confirm each dashboard brief matches the corresponding report header badge.
 - Run the complete test suite.
 - Run a local-link validator across `index.html` and every report.
 - Manually inspect desktop and narrow-screen layouts for at least one quarterly,
   one interim, and one annual report.
+
+## Delivered Dashboard Experience
+
+- The Amplifon page features the latest analysis and shows coverage and source
+  counts.
+- Archive briefs come from each report's concise header badge rather than the
+  longer one-line verdict.
+- Reporting periods use investor-friendly labels such as `Q1 2026` and
+  `FY 2025`.
+- The desktop archive table becomes linked report cards on narrow screens.
+- The generator applies the same company-page structure to covered and planned
+  companies.
 
 ## Implementation Boundaries
 
@@ -102,15 +108,15 @@ comparison context for the next period.
 
 ## Acceptance Checklist
 
-- [ ] Six missing HTML reports are added.
-- [ ] Every source period in `sources/amplifon/reports.json` maps to a valid
+- [x] Six missing HTML reports are added.
+- [x] Every source period in `sources/amplifon/reports.json` maps to a valid
       report or a documented exception.
-- [ ] Every report follows the required structure and metadata contract.
-- [ ] Every material factual claim has a primary-source citation.
-- [ ] Relevant YoY and sequential comparisons reconcile metric definitions.
-- [ ] All report and source links resolve locally.
-- [ ] Dashboard and inventory show complete Amplifon coverage.
-- [ ] Automated tests pass.
+- [x] Every report follows the required structure and metadata contract.
+- [x] Every material factual claim has a primary-source citation.
+- [x] Relevant YoY and sequential comparisons reconcile metric definitions.
+- [x] All report and source links resolve locally.
+- [x] Dashboard and inventory show complete Amplifon coverage.
+- [x] Automated tests pass.
 - [ ] Representative responsive layouts are manually verified.
 
 ## Risks
