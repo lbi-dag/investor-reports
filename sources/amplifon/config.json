@@ -1,0 +1,14 @@
+{
+  "company": "Amplifon",
+  "base_url": "https://corporate.amplifon.com",
+  "index_pages": [
+    {
+      "kind": "financial-report",
+      "url": "https://corporate.amplifon.com/en/investors/financial-reports"
+    },
+    {
+      "kind": "results-presentation",
+      "url": "https://corporate.amplifon.com/en/investors/presentations-and-webcast"
+    }
+  ]
+}

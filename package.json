@@ -1,0 +1,10 @@
+{
+  "name": "investor-reports",
+  "private": true,
+  "scripts": {
+    "test": "python3 -m unittest discover -s tests -v"
+  },
+  "dependencies": {
+    "pdfjs-dist": "6.0.227"
+  }
+}
