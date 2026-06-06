@@ -4,6 +4,7 @@ from pathlib import Path
 
 from scripts.validate_reports import REQUIRED_MARKERS, validate_report
 from scripts.generate_amplifon_interim_reports import REPORTS
+from scripts.generate_gn_reports import REPORTS as GN_REPORTS
 
 
 class ValidateReportsTest(unittest.TestCase):
@@ -12,6 +13,11 @@ class ValidateReportsTest(unittest.TestCase):
         self.assertEqual(len(slugs), len(set(slugs)))
         for report in REPORTS:
             self.assertTrue((Path("sources/amplifon") / report["source"]).exists())
+
+        gn_slugs = [report["slug"] for report in GN_REPORTS]
+        self.assertEqual(len(gn_slugs), len(set(gn_slugs)))
+        for report in GN_REPORTS:
+            self.assertTrue(report["sources"])
 
     def test_accepts_complete_report_with_resolving_source_link(self):
         with tempfile.TemporaryDirectory() as temp_dir:

@@ -29,13 +29,13 @@ class TestInventoryReports(unittest.TestCase):
         # Test with non-existent dir
         with unittest.mock.patch('scripts.inventory_reports.REPORTS_DIR', Path('non_existent_dir')):
             reports = get_existing_reports()
-            self.assertEqual(reports, {"amplifon": []})
+            self.assertEqual(reports, {"amplifon": [], "gn": []})
 
     def test_get_existing_reports_ignores_invalid_report(self):
         with unittest.mock.patch('scripts.inventory_reports.REPORTS_DIR', Path('reports')):
             with unittest.mock.patch('scripts.inventory_reports.report_structure_errors', return_value=["invalid"]):
                 reports = get_existing_reports()
-                self.assertEqual(reports, {"amplifon": []})
+                self.assertEqual(reports, {"amplifon": [], "gn": []})
 
     def test_get_available_sources_missing_manifest(self):
         # Test with missing reports.json

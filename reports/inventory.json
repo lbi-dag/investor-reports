@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-06T15:57:46.455563",
+  "generated_at": "2026-06-06T16:13:51.844845",
   "skill_version": "1.1.0",
   "inventory": [
     {
@@ -83,6 +83,25 @@
       "documents": [
         "Interim Financial Report as at 31 March 2026",
         "Q1 2026 Results Presentation"
+      ]
+    },
+    {
+      "company": "gn",
+      "period": "2025-fy",
+      "status": "PRESENT",
+      "document_count": 1,
+      "documents": [
+        "GN Annual Report 2025"
+      ]
+    },
+    {
+      "company": "gn",
+      "period": "2026-q1",
+      "status": "PRESENT",
+      "document_count": 2,
+      "documents": [
+        "GN Q1 2026 Conference Call Presentation",
+        "GN Interim Report Q1 2026"
       ]
     }
   ]

@@ -1,0 +1,24 @@
+{
+  "company": "GN Store Nord",
+  "index_url": "https://www.gn.com/investor/financial-reports",
+  "documents": [
+    {
+      "period": "2025-fy",
+      "title": "GN Annual Report 2025",
+      "kind": "annual-report",
+      "source_url": "https://www.gn.com/-/media/Files/Financial-Download-Center/2026/Q1/GN-Annual-Report-2025.pdf"
+    },
+    {
+      "period": "2026-q1",
+      "title": "GN Interim Report Q1 2026",
+      "kind": "interim-report",
+      "source_url": "https://www.gn.com/-/media/Files/Financial-Download-Center/2026/Q2/GN-Interim-Report-Q1-2026.pdf"
+    },
+    {
+      "period": "2026-q1",
+      "title": "GN Q1 2026 Conference Call Presentation",
+      "kind": "conference-call-presentation",
+      "source_url": "https://www.gn.com/-/media/Files/Financial-Download-Center/2026/Q2/GN-Q1-2026-conference-call.pdf"
+    }
+  ]
+}

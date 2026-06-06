@@ -13,11 +13,11 @@ except ModuleNotFoundError:
 REPORTS_DIR = Path("reports")
 SOURCES_DIR = Path("sources")
 COMPANY_PAGES_DIR = Path("companies")
-COMPANIES = ["amplifon"]
+COMPANIES = ["amplifon", "gn"]
 COMPANY_DIRECTORY = [
     {"slug": "amplifon", "name": "Amplifon", "ticker": "AMP:IM", "logo": "amplifon.svg", "logo_class": "", "description": "Global hearing-care retailer with coverage from 2024 onward."},
     {"slug": "starkey", "name": "Starkey", "ticker": "Private", "logo": "starkey.svg", "logo_class": "", "description": "Hearing-aid manufacturer. Source collection and analysis are planned."},
-    {"slug": "gn", "name": "GN Group", "ticker": "GN.CO", "logo": "gn.svg", "logo_class": "logo-stage-dark", "description": "Hearing, enterprise-audio, and gaming technology group. Coverage is planned."},
+    {"slug": "gn", "name": "GN Group", "ticker": "GN.CO", "logo": "gn.svg", "logo_class": "logo-stage-dark", "description": "Hearing, enterprise-audio, and gaming technology group with coverage from FY 2025 onward."},
 ]
 SKILL_VERSION = "1.1.0"  # Increment when SKILL.md or references change
 

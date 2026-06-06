@@ -32,11 +32,15 @@ python3 scripts/sync_amplifon_reports.py
 # Check for new reports without downloading
 python3 scripts/sync_amplifon_reports.py --check
 
+# Sync configured official GN reports
+python3 scripts/sync_gn_reports.py
+
 # Inventory all sources and update company/report dashboards
 python3 scripts/inventory_reports.py
 
 # Force refresh all extracted Markdown from original PDFs
 python3 scripts/sync_amplifon_reports.py --refresh-extracts
+python3 scripts/sync_gn_reports.py --refresh-extracts
 ```
 ...
 ## Repository Structure
@@ -47,7 +51,8 @@ python3 scripts/sync_amplifon_reports.py --refresh-extracts
 - `reports/`: Human/AI-written investor briefs.
 - `ROADMAP.md`: Future development plans.
 - `scripts/`:
-    - `sync_amplifon_reports.py`: The primary automation script.
+    - `sync_amplifon_reports.py`: Amplifon source automation.
+    - `sync_gn_reports.py`: GN source automation.
     - `inventory_reports.py`: Batch analysis inventory and dashboard updater.
     - `extract_pdf_markdown.mjs`: The text extraction engine.
 - `.github/workflows/`: Automation for bi-monthly syncs and PR generation.
