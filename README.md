@@ -6,13 +6,25 @@ The project focuses on reading beyond management's headline narrative:
 reconciling reported and adjusted figures, identifying selective comparisons,
 and translating material corporate language into evidence-based plain English.
 
-## Market Reality Dashboard
+## Company Directory And Report Dashboards
 
-The repository features a [Market Reality Dashboard](index.html) that tracks the gap between corporate narratives and financial reality. It provides real-time statistics on report coverage and surface-extracts key AI verdicts.
+The root [company directory](index.html) lists covered and planned companies.
+Each covered company has a report-history dashboard, such as
+[Amplifon](companies/amplifon.html), with:
+
+- Company identity, ticker, coverage start, and official-source count
+- A featured link to the latest analysis
+- Human-readable reporting periods and analysis status
+- Short report briefs extracted from each report header badge
+- A desktop report archive and responsive mobile report cards
+
+The header badge is the report's concise archive summary. Keep it short,
+specific, and distinct from the longer one-line verdict inside the report.
 
 ## Repository Structure
 
-- `index.html`: Market Reality Dashboard and report-library landing page.
+- `index.html`: Company-directory landing page.
+- `companies/`: Company-level report-history dashboards.
 - `reports/`: Published investor briefs and reporting inventory.
 - `sources/amplifon/`: Amplifon source manifest, generated index, and page-marked Markdown extracts.
 - `scripts/sync_amplifon_reports.py`: Source discovery, validation, extraction, and indexing pipeline.
@@ -79,10 +91,24 @@ python3 scripts/sync_amplifon_reports.py --check
 
 ## Batch Analysis & Dashboard
 
-Inventory the entire data lake and update the Market Reality Dashboard:
+Inventory the entire data lake and update the company directory and report dashboards:
 
 ```bash
 python3 scripts/inventory_reports.py
+```
+
+The inventory command:
+
+1. Includes only reports that pass the report-structure validator.
+2. Matches source periods to published investor reports.
+3. Extracts each report's header badge for its dashboard brief.
+4. Regenerates `index.html`, every page in `companies/`, and
+   `reports/inventory.json`.
+
+Regenerate the standardized interim-period Amplifon reports:
+
+```bash
+python3 scripts/generate_amplifon_interim_reports.py
 ```
 
 Regenerate every Markdown extract after improving or upgrading the extractor:
@@ -121,6 +147,9 @@ The skill requires:
 ```bash
 npm test
 ```
+
+The test command validates report structure and all local dashboard, report,
+and source links.
 
 ## Run The Static Site
 

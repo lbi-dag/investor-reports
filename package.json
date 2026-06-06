@@ -2,7 +2,7 @@
   "name": "investor-reports",
   "private": true,
   "scripts": {
-    "test": "python3 -m unittest discover -s tests -v"
+    "test": "python3 -m unittest discover -s tests -v && python3 scripts/validate_reports.py && python3 scripts/validate_reports.py --links-only index.html companies/*.html reports/*.html"
   },
   "dependencies": {
     "pdfjs-dist": "6.0.227"
