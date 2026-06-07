@@ -26,9 +26,10 @@ specific, and distinct from the longer one-line verdict inside the report.
 - `index.html`: Company-directory landing page.
 - `companies/`: Company-level report-history dashboards.
 - `reports/`: Published investor briefs and reporting inventory.
-- `sources/amplifon/`, `sources/gn/`: Company source manifests, generated indexes, and page-marked Markdown extracts.
+- `sources/amplifon/`, `sources/gn/`, `sources/sonova/`: Company source manifests, generated indexes, and page-marked Markdown extracts.
 - `scripts/sync_amplifon_reports.py`: Amplifon source discovery, validation, extraction, and indexing pipeline.
 - `scripts/sync_gn_reports.py`: Configured GN source validation, extraction, and indexing pipeline.
+- `scripts/sync_sonova_reports.py`: Configured Sonova source validation, extraction, and indexing pipeline.
 - `scripts/inventory_reports.py`: Batch analysis inventory and dashboard generator.
 - `scripts/extract_pdf_markdown.mjs`: PDF.js-based page-aware text extractor.
 - `.agents/skills/read-between-financial-lines/`: Reusable financial-analysis skill.
@@ -96,6 +97,7 @@ Download and extract configured official GN materials:
 
 ```bash
 python3 scripts/sync_gn_reports.py
+python3 scripts/sync_sonova_reports.py
 ```
 
 Add newly published GN documents to `sources/gn/config.json`, then use
@@ -128,6 +130,7 @@ Regenerate the GN FY 2025 and Q1 2026 investor reports:
 
 ```bash
 python3 scripts/generate_gn_reports.py
+python3 scripts/generate_sonova_reports.py
 ```
 
 Regenerate every Markdown extract after improving or upgrading the extractor:

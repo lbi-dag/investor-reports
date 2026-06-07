@@ -62,7 +62,7 @@ class SyncGnReportsTest(unittest.TestCase):
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
             self.assertEqual(manifest["reports"][0]["period"], "2026-q1")
             self.assertTrue((source_dir / "2026-q1" / "interim-report.md").is_file())
-            self.assertIn("GN Source Reports", index_path.read_text(encoding="utf-8"))
+            self.assertIn("GN Store Nord Source Reports", index_path.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":
