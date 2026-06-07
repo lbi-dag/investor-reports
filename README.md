@@ -1,206 +1,93 @@
 # Investor Reports
 
-Static investor briefs generated from official company financial materials.
+Investor Reports is an evidence-first research system for turning official
+company financial materials into skeptical, sourced investor briefs.
 
-The project focuses on reading beyond management's headline narrative:
-reconciling reported and adjusted figures, identifying selective comparisons,
-and translating material corporate language into evidence-based plain English.
+The project is built around a simple idea: management narratives should be
+tested against reported figures, historical context, and source documents before
+they become investor conclusions.
 
-## Company Directory And Report Dashboards
+## What It Delivers
 
-The root [company directory](index.html) lists covered and planned companies.
-Each covered company has a report-history dashboard, such as
-[Amplifon](companies/amplifon.html), with:
+- **Company dashboards:** a reader-facing directory of covered companies,
+  reporting periods, source coverage, and published analyses.
+- **Evidence-backed investor briefs:** concise reports that separate facts,
+  calculations, management claims, and analyst inferences.
+- **Corporate-language decoding:** plain-English explanations of selective
+  framing, adjusted metrics, omitted context, and recurring "one-off" items.
+- **Primary-source traceability:** every analysis is grounded in official PDFs
+  converted into page-marked Markdown for citation and review.
+- **Automated source coverage:** scheduled workflows monitor official investor
+  sources for newly published reports and propose updates through pull requests.
 
-- Company identity, ticker, coverage start, and official-source count
-- A featured link to the latest analysis
-- Human-readable reporting periods and analysis status
-- Short report briefs extracted from each report header badge
-- A desktop report archive and responsive mobile report cards
+Explore the generated experience from the root [company directory](index.html)
+or individual company dashboards such as [Amplifon](companies/amplifon.html),
+[GN](companies/gn.html), and [Sonova](companies/sonova.html).
 
-The header badge is the report's concise archive summary. Keep it short,
-specific, and distinct from the longer one-line verdict inside the report.
+## AI Architecture
 
-## Repository Structure
+The repository is designed as a source-grounded AI analysis pipeline rather than
+a free-form report generator.
 
-- `index.html`: Company-directory landing page.
-- `companies/`: Company-level report-history dashboards.
-- `reports/`: Published investor briefs and reporting inventory.
-- `sources/amplifon/`, `sources/gn/`, `sources/sonova/`: Company source manifests, generated indexes, and page-marked Markdown extracts.
-- `scripts/sync_amplifon_reports.py`: Amplifon source discovery, validation, extraction, and indexing pipeline.
-- `scripts/sync_gn_reports.py`: Configured GN source validation, extraction, and indexing pipeline.
-- `scripts/sync_sonova_reports.py`: Configured Sonova source validation, extraction, and indexing pipeline.
-- `scripts/inventory_reports.py`: Batch analysis inventory and dashboard generator.
-- `scripts/extract_pdf_markdown.mjs`: PDF.js-based page-aware text extractor.
-- `.agents/skills/read-between-financial-lines/`: Reusable financial-analysis skill.
-- `.agents/skills/add-new-company/`: Command workflow for discovering and adding company coverage.
-- `.github/workflows/sync-amplifon-reports.yml`: Twice-monthly source sync.
-- `ROADMAP.md`: Strategic direction and upcoming features.
-- `AGENTS.md`: Canonical instructions for AI agents (Gemini, Claude, Copilot).
+1. **Official-source ingestion:** company sync scripts discover supported
+   reports, validate PDFs, record checksums, and extract page-marked Markdown.
+2. **Structured source lake:** `sources/` stores manifests, provenance metadata,
+   generated indexes, and extracted text while keeping PDF binaries out of Git.
+3. **Analysis skill layer:** `.agents/skills/read-between-financial-lines/`
+   defines the reasoning workflow, evidence rules, quality gates, and output
+   expectations for AI-assisted analysis.
+4. **Historical context:** reports are expected to compare current results with
+   prior periods, detect changed baselines, and test whether management's
+   framing matches the disclosed numbers.
+5. **Publishing layer:** generated HTML reports and company dashboards expose
+   the analysis to readers without requiring them to inspect the source lake.
 
-## Source Storage
+The result is a workflow where AI helps interpret financial communication, but
+the repository keeps the system anchored to source provenance, reproducible
+extracts, and explicit analytical constraints.
 
-Official PDFs are not committed to Git. The sync pipeline:
+## Product Surface
 
-1. Discovers official financial reports and results presentations.
-2. Skips URLs and report-period/type combinations already in `reports.json`.
-3. Downloads new PDFs temporarily.
-4. Validates the PDF signature, file size, and SHA-256 checksum.
-5. Extracts page-marked Markdown with source provenance.
-6. Discards the temporary PDF.
-7. Updates `reports.json` and regenerates `INDEX.md`.
+The public-facing site is intentionally lightweight:
 
-Each Markdown extract includes:
+- `index.html` summarizes covered companies and their latest analysis.
+- `companies/` provides company-level report histories and source coverage.
+- `reports/` contains published investor briefs.
+- `sources/` exposes the underlying extracted source materials for audit.
 
-- Official PDF URL
-- Reporting period and document type
-- Download date
-- Original PDF size and SHA-256
-- Extractor version
-- `<!-- page: N -->` markers for citations
+The reports are written for investors who want a second read on the official
+story: what is genuinely improving, what the headline obscures, what language
+needs decoding, and what measurable items should be watched next.
 
-See [sources/amplifon/INDEX.md](sources/amplifon/INDEX.md) and
-[sources/gn/INDEX.md](sources/gn/INDEX.md) for the current source collections
-and official download links.
+## Automation
 
-Text extraction does not perfectly preserve complex tables, charts, or visual
-layout. Use the official PDF URL when those details materially affect analysis.
+GitHub Actions scans official Amplifon, GN, and Sonova investor sources on the
+10th and 25th of each month. Supported new documents are validated, extracted,
+indexed, and proposed through company-specific automation pull requests.
 
-## Setup
+See [Scheduled Source Syncs](docs/scheduled-source-syncs.md) for the technical
+workflow schedules, tasks, discovery rules, and safety behavior.
 
-Requirements:
+## Repository Map
 
-- Python 3.12+
-- Node.js 22+
+- `.agents/skills/`: AI workflow instructions for source discovery and
+  skeptical financial analysis.
+- `.github/workflows/`: scheduled source-sync automation.
+- `assets/`: company logos and static site assets.
+- `companies/`: generated company dashboards.
+- `docs/`: technical notes, workflow details, and implementation plans.
+- `reports/`: published investor briefs and inventory metadata.
+- `scripts/`: source sync, extraction, validation, inventory, and report
+  generation tooling.
+- `sources/`: official-source manifests, indexes, and extracted Markdown.
 
-Install the pinned PDF extraction dependency:
+## Learn More
 
-```bash
-npm ci
-```
-
-## Sync Sources
-
-Discover and extract newly published Amplifon materials:
-
-```bash
-python3 scripts/sync_amplifon_reports.py
-```
-
-Check whether new reports exist without downloading them:
-
-```bash
-python3 scripts/sync_amplifon_reports.py --check
-```
-
-Download and extract configured official GN and Sonova materials:
-
-```bash
-python3 scripts/sync_gn_reports.py
-python3 scripts/sync_sonova_reports.py
-```
-
-Add newly published GN or Sonova documents to the corresponding
-`sources/<company>/config.json`, then run the company sync with `--check` to
-confirm the configured documents are not yet in its manifest.
-
-## Batch Analysis & Dashboard
-
-Inventory the entire data lake and update the company directory and report dashboards:
-
-```bash
-python3 scripts/inventory_reports.py
-```
-
-The inventory command:
-
-1. Includes only reports that pass the report-structure validator.
-2. Matches source periods to published investor reports.
-3. Extracts each report's header badge for its dashboard brief.
-4. Regenerates `index.html`, every page in `companies/`, and
-   `reports/inventory.json`.
-
-Regenerate the standardized interim-period Amplifon reports:
-
-```bash
-python3 scripts/generate_amplifon_interim_reports.py
-```
-
-Regenerate the GN FY 2025 and Q1 2026 investor reports:
-
-```bash
-python3 scripts/generate_gn_reports.py
-python3 scripts/generate_sonova_reports.py
-```
-
-Regenerate every Markdown extract after improving or upgrading the extractor:
-
-```bash
-python3 scripts/sync_amplifon_reports.py --refresh-extracts
-python3 scripts/sync_gn_reports.py --refresh-extracts
-python3 scripts/sync_sonova_reports.py --refresh-extracts
-```
-
-The refresh command re-downloads each official PDF temporarily and refuses to
-continue if its size or SHA-256 differs from the recorded source metadata.
-
-## Scheduled Sync
-
-GitHub Actions runs three source-sync workflows on the 1st and 15th of each
-month:
-
-- **Amplifon:** scans the official financial-report and presentation indexes to
-  discover newly published supported documents automatically.
-- **GN:** downloads and extracts only official document URLs already listed in
-  `sources/gn/config.json`.
-- **Sonova:** downloads and extracts only official document URLs already listed
-  in `sources/sonova/config.json`.
-
-The GN and Sonova workflows do not currently discover new files from their
-investor-relations websites. Their configurations must be updated before the
-scheduled workflows can ingest newly published documents.
-
-All three workflows can also be started manually. When documents are added, the
-workflows open or update their company-specific automation pull requests. The
-repository's Actions settings must allow GitHub Actions to create pull requests.
-
-## Create An Investor Brief
-
-Invoke `$read-between-financial-lines` and provide the relevant official
-materials, extracted source files, or URLs.
-
-The skill requires:
-
-- A factual baseline before interpretation
-- Reconciliation of management framing with disclosed figures
-- Clear separation of facts, calculations, management claims, and inferences
-- Visible source citations and confidence levels
-- Balanced bull and bear cases with measurable items to watch
-
-## Add A New Company
-
-Invoke `$add-new-company` with the company name. The command searches for and
-qualifies the official investor-relations source, creates repeatable source and
-report automation, and analyzes the latest two available reporting periods.
-
-Private companies without public financial reports receive a documented source
-discovery result instead of fabricated reports.
-
-## Test
-
-```bash
-npm test
-```
-
-The test command validates report structure and all local dashboard, report,
-and source links.
-
-## Run The Static Site
-
-From the repository root:
-
-```bash
-python3 -m http.server 8000
-```
-
-Open `http://127.0.0.1:8000`.
+- [Developer Workflow](docs/developer-workflow.md): setup, local commands,
+  validation, and static-site serving.
+- [Scheduled Source Syncs](docs/scheduled-source-syncs.md): GitHub Actions
+  cadence, discovery rules, and PR behavior.
+- [Roadmap](ROADMAP.md): planned improvements for analysis depth, dashboards,
+  and investor engagement.
+- [Agent Instructions](AGENTS.md): concise operating context for AI coding
+  agents working in this repository.

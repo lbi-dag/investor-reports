@@ -2,7 +2,7 @@ name: Sync GN reports
 
 on:
   schedule:
-    - cron: "47 8 1,15 * *"
+    - cron: "47 8 10,25 * *"
   workflow_dispatch:
 
 permissions:
@@ -25,9 +25,9 @@ jobs:
         run: npm ci
 
       - name: Run tests
-        run: python3 -m unittest discover -s tests -v
+        run: npm test
 
-      - name: Sync configured official GN reports
+      - name: Discover and sync official GN reports
         run: python3 scripts/sync_gn_reports.py
 
       - name: Create source update pull request
@@ -38,5 +38,5 @@ jobs:
           commit-message: "Update GN source reports"
           title: "Update GN source reports"
           body: |
-            Automated twice-monthly sync of configured official GN financial
-            reports and conference-call presentations.
+            Automated twice-monthly discovery and sync of official GN
+            financial reports and conference-call presentations.

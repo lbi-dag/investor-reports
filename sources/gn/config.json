@@ -2,6 +2,11 @@
   "company": "GN Store Nord",
   "official_domain": "gn.com",
   "index_url": "https://www.gn.com/investor/financial-reports",
+  "discovery_url": "https://www.gn.com/api/downloadcenter/events",
+  "discovery_since": "2026-01-01",
+  "allowed_pdf_paths": [
+    "/-/media/Files/Financial-Download-Center/"
+  ],
   "sync_command": "python3 scripts/sync_gn_reports.py",
   "documents": [
     {
