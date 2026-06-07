@@ -34,7 +34,9 @@ specific, and distinct from the longer one-line verdict inside the report.
 - `scripts/extract_pdf_markdown.mjs`: PDF.js-based page-aware text extractor.
 - `.agents/skills/read-between-financial-lines/`: Reusable financial-analysis skill.
 - `.agents/skills/add-new-company/`: Command workflow for discovering and adding company coverage.
-- `.github/workflows/sync-amplifon-reports.yml`: Twice-monthly source sync.
+- `.github/workflows/sync-amplifon-reports.yml`: Twice-monthly Amplifon source sync.
+- `.github/workflows/sync-gn-reports.yml`: Twice-monthly GN source sync.
+- `.github/workflows/sync-sonova-reports.yml`: Twice-monthly Sonova source sync.
 - `ROADMAP.md`: Strategic direction and upcoming features.
 - `AGENTS.md`: Canonical instructions for AI agents (Gemini, Claude, Copilot).
 
@@ -154,7 +156,28 @@ continue if its size or SHA-256 differs from the recorded source metadata.
 ## Scheduled Sync
 
 GitHub Actions runs three source-sync workflows on the 1st and 15th of each
-month:
+month. Cron times are UTC, and each workflow can also be started manually with
+`workflow_dispatch`.
+
+| Company | Schedule | Validation step | Sync command | Automation branch |
+| --- | --- | --- | --- | --- |
+| Amplifon | `17 8 1,15 * *` | `python3 -m unittest discover -s tests -v` | `python3 scripts/sync_amplifon_reports.py` | `automation/sync-amplifon-reports` |
+| GN | `47 8 1,15 * *` | `npm test` | `python3 scripts/sync_gn_reports.py` | `automation/sync-gn-reports` |
+| Sonova | `27 9 1,15 * *` | `npm test` | `python3 scripts/sync_sonova_reports.py` | `automation/sync-sonova-reports` |
+
+The scheduled jobs perform these tasks:
+
+1. Check out the repository and set up Python 3.12.
+2. Run `npm ci` so the pinned PDF extraction dependency is available.
+3. Run the workflow's validation step.
+4. Scan official company sources and classify supported documents.
+5. Skip already-recorded URLs, duplicate period/type combinations, unrelated
+   materials, sustainability-only documents, and replacement candidates.
+6. Download new PDFs temporarily, validate PDF signature and size, record
+   SHA-256 checksums, and extract page-marked Markdown.
+7. Update the company `reports.json` manifest and generated `INDEX.md`.
+8. Open or update the company-specific automation pull request only when files
+   changed.
 
 - **Amplifon:** scans the official financial-report and presentation indexes to
   discover newly published supported documents automatically.
@@ -163,12 +186,9 @@ month:
 - **Sonova:** scans the official financial-report and investor-presentation
   indexes for annual, half-year, release, and results-presentation PDFs.
 
-Company-specific classification rules reject unrelated presentations,
-sustainability-only materials, report components, and replacement candidates.
-
-All three workflows can also be started manually. When documents are added, the
-workflows open or update their company-specific automation pull requests. The
-repository's Actions settings must allow GitHub Actions to create pull requests.
+The repository's Actions settings must allow GitHub Actions to create pull
+requests. If no files change, `peter-evans/create-pull-request` does not open a
+new PR.
 
 ## Create An Investor Brief
 
