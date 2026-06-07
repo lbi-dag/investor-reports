@@ -93,16 +93,16 @@ Check whether new reports exist without downloading them:
 python3 scripts/sync_amplifon_reports.py --check
 ```
 
-Download and extract configured official GN materials:
+Download and extract configured official GN and Sonova materials:
 
 ```bash
 python3 scripts/sync_gn_reports.py
 python3 scripts/sync_sonova_reports.py
 ```
 
-Add newly published GN documents to `sources/gn/config.json`, then use
-`python3 scripts/sync_gn_reports.py --check` to confirm they are not yet in the
-manifest.
+Add newly published GN or Sonova documents to the corresponding
+`sources/<company>/config.json`, then run the company sync with `--check` to
+confirm the configured documents are not yet in its manifest.
 
 ## Batch Analysis & Dashboard
 
@@ -138,6 +138,7 @@ Regenerate every Markdown extract after improving or upgrading the extractor:
 ```bash
 python3 scripts/sync_amplifon_reports.py --refresh-extracts
 python3 scripts/sync_gn_reports.py --refresh-extracts
+python3 scripts/sync_sonova_reports.py --refresh-extracts
 ```
 
 The refresh command re-downloads each official PDF temporarily and refuses to
@@ -145,13 +146,23 @@ continue if its size or SHA-256 differs from the recorded source metadata.
 
 ## Scheduled Sync
 
-GitHub Actions runs the Amplifon and GN syncs twice monthly. They can also be
-started manually with the **Sync Amplifon reports** and **Sync GN reports**
-workflows.
+GitHub Actions runs three source-sync workflows on the 1st and 15th of each
+month:
 
-When new materials are found, the workflow opens or updates the
-`automation/sync-amplifon-reports` pull request. The repository's Actions
-settings must allow GitHub Actions to create and approve pull requests.
+- **Amplifon:** scans the official financial-report and presentation indexes to
+  discover newly published supported documents automatically.
+- **GN:** downloads and extracts only official document URLs already listed in
+  `sources/gn/config.json`.
+- **Sonova:** downloads and extracts only official document URLs already listed
+  in `sources/sonova/config.json`.
+
+The GN and Sonova workflows do not currently discover new files from their
+investor-relations websites. Their configurations must be updated before the
+scheduled workflows can ingest newly published documents.
+
+All three workflows can also be started manually. When documents are added, the
+workflows open or update their company-specific automation pull requests. The
+repository's Actions settings must allow GitHub Actions to create pull requests.
 
 ## Create An Investor Brief
 
