@@ -32,6 +32,7 @@ specific, and distinct from the longer one-line verdict inside the report.
 - `scripts/inventory_reports.py`: Batch analysis inventory and dashboard generator.
 - `scripts/extract_pdf_markdown.mjs`: PDF.js-based page-aware text extractor.
 - `.agents/skills/read-between-financial-lines/`: Reusable financial-analysis skill.
+- `.agents/skills/add-new-company/`: Command workflow for discovering and adding company coverage.
 - `.github/workflows/sync-amplifon-reports.yml`: Twice-monthly source sync.
 - `ROADMAP.md`: Strategic direction and upcoming features.
 - `AGENTS.md`: Canonical instructions for AI agents (Gemini, Claude, Copilot).
@@ -161,6 +162,15 @@ The skill requires:
 - Clear separation of facts, calculations, management claims, and inferences
 - Visible source citations and confidence levels
 - Balanced bull and bear cases with measurable items to watch
+
+## Add A New Company
+
+Invoke `$add-new-company` with the company name. The command searches for and
+qualifies the official investor-relations source, creates repeatable source and
+report automation, and analyzes the latest two available reporting periods.
+
+Private companies without public financial reports receive a documented source
+discovery result instead of fabricated reports.
 
 ## Test
 

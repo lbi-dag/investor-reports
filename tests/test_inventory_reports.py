@@ -70,9 +70,15 @@ class TestInventoryReports(unittest.TestCase):
 
     def test_planned_company_page_has_no_broken_source_link(self):
         company = {"slug": "starkey", "name": "Starkey", "ticker": "Private"}
+        with unittest.mock.patch('scripts.inventory_reports.SOURCES_DIR', Path('non_existent_dir')):
+            html = render_company_page(company, [])
+            self.assertIn("No reports available yet", html)
+            self.assertNotIn("../sources/starkey/INDEX.md", html)
+
+    def test_company_page_links_source_discovery_when_reports_are_unavailable(self):
+        company = {"slug": "starkey", "name": "Starkey", "ticker": "Private"}
         html = render_company_page(company, [])
-        self.assertIn("No reports available yet", html)
-        self.assertNotIn("../sources/starkey/INDEX.md", html)
+        self.assertIn('href="../sources/starkey/DISCOVERY.md"', html)
 
 if __name__ == "__main__":
     unittest.main()
