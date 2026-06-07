@@ -26,11 +26,14 @@ specific, and distinct from the longer one-line verdict inside the report.
 - `index.html`: Company-directory landing page.
 - `companies/`: Company-level report-history dashboards.
 - `reports/`: Published investor briefs and reporting inventory.
-- `sources/amplifon/`: Amplifon source manifest, generated index, and page-marked Markdown extracts.
-- `scripts/sync_amplifon_reports.py`: Source discovery, validation, extraction, and indexing pipeline.
+- `sources/amplifon/`, `sources/gn/`, `sources/sonova/`: Company source manifests, generated indexes, and page-marked Markdown extracts.
+- `scripts/sync_amplifon_reports.py`: Amplifon source discovery, validation, extraction, and indexing pipeline.
+- `scripts/sync_gn_reports.py`: Configured GN source validation, extraction, and indexing pipeline.
+- `scripts/sync_sonova_reports.py`: Configured Sonova source validation, extraction, and indexing pipeline.
 - `scripts/inventory_reports.py`: Batch analysis inventory and dashboard generator.
 - `scripts/extract_pdf_markdown.mjs`: PDF.js-based page-aware text extractor.
 - `.agents/skills/read-between-financial-lines/`: Reusable financial-analysis skill.
+- `.agents/skills/add-new-company/`: Command workflow for discovering and adding company coverage.
 - `.github/workflows/sync-amplifon-reports.yml`: Twice-monthly source sync.
 - `ROADMAP.md`: Strategic direction and upcoming features.
 - `AGENTS.md`: Canonical instructions for AI agents (Gemini, Claude, Copilot).
@@ -56,8 +59,9 @@ Each Markdown extract includes:
 - Extractor version
 - `<!-- page: N -->` markers for citations
 
-See [sources/amplifon/INDEX.md](sources/amplifon/INDEX.md) for the current source
-collection and official download links.
+See [sources/amplifon/INDEX.md](sources/amplifon/INDEX.md) and
+[sources/gn/INDEX.md](sources/gn/INDEX.md) for the current source collections
+and official download links.
 
 Text extraction does not perfectly preserve complex tables, charts, or visual
 layout. Use the official PDF URL when those details materially affect analysis.
@@ -89,6 +93,17 @@ Check whether new reports exist without downloading them:
 python3 scripts/sync_amplifon_reports.py --check
 ```
 
+Download and extract configured official GN and Sonova materials:
+
+```bash
+python3 scripts/sync_gn_reports.py
+python3 scripts/sync_sonova_reports.py
+```
+
+Add newly published GN or Sonova documents to the corresponding
+`sources/<company>/config.json`, then run the company sync with `--check` to
+confirm the configured documents are not yet in its manifest.
+
 ## Batch Analysis & Dashboard
 
 Inventory the entire data lake and update the company directory and report dashboards:
@@ -111,10 +126,19 @@ Regenerate the standardized interim-period Amplifon reports:
 python3 scripts/generate_amplifon_interim_reports.py
 ```
 
+Regenerate the GN FY 2025 and Q1 2026 investor reports:
+
+```bash
+python3 scripts/generate_gn_reports.py
+python3 scripts/generate_sonova_reports.py
+```
+
 Regenerate every Markdown extract after improving or upgrading the extractor:
 
 ```bash
 python3 scripts/sync_amplifon_reports.py --refresh-extracts
+python3 scripts/sync_gn_reports.py --refresh-extracts
+python3 scripts/sync_sonova_reports.py --refresh-extracts
 ```
 
 The refresh command re-downloads each official PDF temporarily and refuses to
@@ -122,12 +146,23 @@ continue if its size or SHA-256 differs from the recorded source metadata.
 
 ## Scheduled Sync
 
-GitHub Actions runs the sync at **08:17 UTC on the 1st and 15th of each month**.
-It can also be started manually with the **Sync Amplifon reports** workflow.
+GitHub Actions runs three source-sync workflows on the 1st and 15th of each
+month:
 
-When new materials are found, the workflow opens or updates the
-`automation/sync-amplifon-reports` pull request. The repository's Actions
-settings must allow GitHub Actions to create and approve pull requests.
+- **Amplifon:** scans the official financial-report and presentation indexes to
+  discover newly published supported documents automatically.
+- **GN:** downloads and extracts only official document URLs already listed in
+  `sources/gn/config.json`.
+- **Sonova:** downloads and extracts only official document URLs already listed
+  in `sources/sonova/config.json`.
+
+The GN and Sonova workflows do not currently discover new files from their
+investor-relations websites. Their configurations must be updated before the
+scheduled workflows can ingest newly published documents.
+
+All three workflows can also be started manually. When documents are added, the
+workflows open or update their company-specific automation pull requests. The
+repository's Actions settings must allow GitHub Actions to create pull requests.
 
 ## Create An Investor Brief
 
@@ -141,6 +176,15 @@ The skill requires:
 - Clear separation of facts, calculations, management claims, and inferences
 - Visible source citations and confidence levels
 - Balanced bull and bear cases with measurable items to watch
+
+## Add A New Company
+
+Invoke `$add-new-company` with the company name. The command searches for and
+qualifies the official investor-relations source, creates repeatable source and
+report automation, and analyzes the latest two available reporting periods.
+
+Private companies without public financial reports receive a documented source
+discovery result instead of fabricated reports.
 
 ## Test
 

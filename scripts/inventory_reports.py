@@ -13,11 +13,11 @@ except ModuleNotFoundError:
 REPORTS_DIR = Path("reports")
 SOURCES_DIR = Path("sources")
 COMPANY_PAGES_DIR = Path("companies")
-COMPANIES = ["amplifon"]
+COMPANIES = ["amplifon", "gn", "sonova"]
 COMPANY_DIRECTORY = [
     {"slug": "amplifon", "name": "Amplifon", "ticker": "AMP:IM", "logo": "amplifon.svg", "logo_class": "", "description": "Global hearing-care retailer with coverage from 2024 onward."},
-    {"slug": "starkey", "name": "Starkey", "ticker": "Private", "logo": "starkey.svg", "logo_class": "", "description": "Hearing-aid manufacturer. Source collection and analysis are planned."},
-    {"slug": "gn", "name": "GN Group", "ticker": "GN.CO", "logo": "gn.svg", "logo_class": "logo-stage-dark", "description": "Hearing, enterprise-audio, and gaming technology group. Coverage is planned."},
+    {"slug": "sonova", "name": "Sonova", "ticker": "SOON:SW", "logo": "sonova.png", "logo_class": "", "description": "Global hearing-care technology and audiological-care group with coverage from H1 2025/26 onward."},
+    {"slug": "gn", "name": "GN Group", "ticker": "GN.CO", "logo": "gn.svg", "logo_class": "logo-stage-dark", "description": "Hearing, enterprise-audio, and gaming technology group with coverage from FY 2025 onward."},
 ]
 SKILL_VERSION = "1.1.0"  # Increment when SKILL.md or references change
 
@@ -183,11 +183,13 @@ def render_company_page(company, inventory):
     covered_periods = [item["period"] for item in inventory if item["status"] == "PRESENT"]
     coverage_since = min((period_sort_key(period), period) for period in covered_periods)[1] if covered_periods else None
     source_index = SOURCES_DIR / company["slug"] / "INDEX.md"
-    source_link = (
-        f'<a class="header-link" href="../sources/{company["slug"]}/INDEX.md">Official source index</a>'
-        if source_index.exists()
-        else ""
-    )
+    source_discovery = SOURCES_DIR / company["slug"] / "DISCOVERY.md"
+    if source_index.exists():
+        source_link = f'<a class="header-link" href="../sources/{company["slug"]}/INDEX.md">Official source index</a>'
+    elif source_discovery.exists():
+        source_link = f'<a class="header-link" href="../sources/{company["slug"]}/DISCOVERY.md">Source discovery</a>'
+    else:
+        source_link = ""
     rows_html = ''.join(rows) or '<tr><td colspan="4">No reports available yet. Coverage is planned.</td></tr>'
     mobile_html = ''.join(mobile_cards) or '<article class="report-card">No reports available yet. Coverage is planned.</article>'
     logo = company.get("logo")

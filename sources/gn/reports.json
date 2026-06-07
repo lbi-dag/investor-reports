@@ -1,0 +1,35 @@
+{
+  "company": "GN Store Nord",
+  "reports": [
+    {
+      "period": "2025-fy",
+      "title": "GN Annual Report 2025",
+      "kind": "annual-report",
+      "source_url": "https://www.gn.com/-/media/Files/Financial-Download-Center/2026/Q1/GN-Annual-Report-2025.pdf",
+      "local_file": "2025-fy/annual-report.md",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 14110699,
+      "sha256": "3deac8acec8e35cbd49fca178e9e21cff5a200801af61a5f18d87f789200e555"
+    },
+    {
+      "period": "2026-q1",
+      "title": "GN Q1 2026 Conference Call Presentation",
+      "kind": "conference-call-presentation",
+      "source_url": "https://www.gn.com/-/media/Files/Financial-Download-Center/2026/Q2/GN-Q1-2026-conference-call.pdf",
+      "local_file": "2026-q1/conference-call-presentation.md",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 1016083,
+      "sha256": "5520895639af4f618d355c27576ff18b76e9761d1a0367f8a9d2a0bad41372b1"
+    },
+    {
+      "period": "2026-q1",
+      "title": "GN Interim Report Q1 2026",
+      "kind": "interim-report",
+      "source_url": "https://www.gn.com/-/media/Files/Financial-Download-Center/2026/Q2/GN-Interim-Report-Q1-2026.pdf",
+      "local_file": "2026-q1/interim-report.md",
+      "downloaded_at": "2026-06-06",
+      "size_bytes": 768835,
+      "sha256": "3e94e922dcec3e679621d07f7a92b194eba38969c20c4a5147bfa3d293be0a84"
+    }
+  ]
+}

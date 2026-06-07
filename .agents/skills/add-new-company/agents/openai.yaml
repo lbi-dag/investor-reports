@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add New Company"
+  short_description: "Discover and add company financial-report coverage"
+  default_prompt: "Use $add-new-company to add a new company, build source automation, and analyze its latest two official reports."
