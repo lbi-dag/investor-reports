@@ -12,6 +12,16 @@
       "sha256": "3deac8acec8e35cbd49fca178e9e21cff5a200801af61a5f18d87f789200e555"
     },
     {
+      "period": "2025-fy",
+      "kind": "conference-call-presentation",
+      "title": "GN FY 2025 Conference Call Presentation",
+      "source_url": "https://www.gn.com/-/media/Files/Financial-Download-Center/2026/Q1/GN-AR-2025-conference-call.pdf",
+      "local_file": "2025-fy/conference-call-presentation.md",
+      "downloaded_at": "2026-06-07",
+      "size_bytes": 1505678,
+      "sha256": "138a4baad9c2b62ea7d9edbac90fb83a1bf4b9223bbc3f7ebc30622171c7148d"
+    },
+    {
       "period": "2026-q1",
       "title": "GN Q1 2026 Conference Call Presentation",
       "kind": "conference-call-presentation",

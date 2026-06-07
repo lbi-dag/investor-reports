@@ -32,10 +32,10 @@ python3 scripts/sync_amplifon_reports.py
 # Check for new reports without downloading
 python3 scripts/sync_amplifon_reports.py --check
 
-# Sync configured official GN reports
+# Discover and extract new GN reports
 python3 scripts/sync_gn_reports.py
 
-# Sync configured official Sonova reports
+# Discover and extract new Sonova reports
 python3 scripts/sync_sonova_reports.py
 
 # Inventory all sources and update company/report dashboards
@@ -64,7 +64,7 @@ python3 scripts/sync_sonova_reports.py --refresh-extracts
 
 ## Scheduled Sync Behavior
 
-- Amplifon automatically discovers supported files from its official investor
-  indexes.
-- GN and Sonova only sync official URLs already present in their company
-  `config.json` files; they do not yet discover newly published files.
+- Amplifon, GN, and Sonova automatically discover supported files from their
+  official investor indexes.
+- Existing official URLs in company `config.json` files remain supported as
+  compatibility seeds.

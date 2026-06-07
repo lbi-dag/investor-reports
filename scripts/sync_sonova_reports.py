@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download, extract, and index configured official Sonova financial reports."""
+"""Discover, download, extract, and index official Sonova financial reports."""
 
 from pathlib import Path
 

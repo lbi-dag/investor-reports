@@ -28,8 +28,8 @@ specific, and distinct from the longer one-line verdict inside the report.
 - `reports/`: Published investor briefs and reporting inventory.
 - `sources/amplifon/`, `sources/gn/`, `sources/sonova/`: Company source manifests, generated indexes, and page-marked Markdown extracts.
 - `scripts/sync_amplifon_reports.py`: Amplifon source discovery, validation, extraction, and indexing pipeline.
-- `scripts/sync_gn_reports.py`: Configured GN source validation, extraction, and indexing pipeline.
-- `scripts/sync_sonova_reports.py`: Configured Sonova source validation, extraction, and indexing pipeline.
+- `scripts/sync_gn_reports.py`: GN and Sonova source discovery, classification, validation, extraction, and indexing engine.
+- `scripts/sync_sonova_reports.py`: Sonova entry point for the shared discovery and sync engine.
 - `scripts/inventory_reports.py`: Batch analysis inventory and dashboard generator.
 - `scripts/extract_pdf_markdown.mjs`: PDF.js-based page-aware text extractor.
 - `.agents/skills/read-between-financial-lines/`: Reusable financial-analysis skill.
@@ -93,16 +93,23 @@ Check whether new reports exist without downloading them:
 python3 scripts/sync_amplifon_reports.py --check
 ```
 
-Download and extract configured official GN and Sonova materials:
+Discover and extract newly published official GN and Sonova materials:
 
 ```bash
 python3 scripts/sync_gn_reports.py
 python3 scripts/sync_sonova_reports.py
 ```
 
-Add newly published GN or Sonova documents to the corresponding
-`sources/<company>/config.json`, then run the company sync with `--check` to
-confirm the configured documents are not yet in its manifest.
+Use `--check` to scan the official indexes without downloading newly discovered
+documents:
+
+```bash
+python3 scripts/sync_gn_reports.py --check
+python3 scripts/sync_sonova_reports.py --check
+```
+
+Existing official URLs in each `sources/<company>/config.json` remain supported
+as compatibility seeds.
 
 ## Batch Analysis & Dashboard
 
@@ -151,14 +158,13 @@ month:
 
 - **Amplifon:** scans the official financial-report and presentation indexes to
   discover newly published supported documents automatically.
-- **GN:** downloads and extracts only official document URLs already listed in
-  `sources/gn/config.json`.
-- **Sonova:** downloads and extracts only official document URLs already listed
-  in `sources/sonova/config.json`.
+- **GN:** scans GN's official download-center endpoint for annual and interim
+  reports plus their conference-call results presentations.
+- **Sonova:** scans the official financial-report and investor-presentation
+  indexes for annual, half-year, release, and results-presentation PDFs.
 
-The GN and Sonova workflows do not currently discover new files from their
-investor-relations websites. Their configurations must be updated before the
-scheduled workflows can ingest newly published documents.
+Company-specific classification rules reject unrelated presentations,
+sustainability-only materials, report components, and replacement candidates.
 
 All three workflows can also be started manually. When documents are added, the
 workflows open or update their company-specific automation pull requests. The

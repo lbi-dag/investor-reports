@@ -2,6 +2,21 @@
   "company": "Sonova",
   "official_domain": "sonova.com",
   "index_url": "https://www.sonova.com/en/investors",
+  "index_pages": [
+    {
+      "kind": "financial-reports",
+      "label": "Financial reports",
+      "url": "https://www.sonova.com/en/financial-reports"
+    },
+    {
+      "kind": "investor-presentations",
+      "label": "Presentations and webcasts",
+      "url": "https://www.sonova.com/en/investor-presentations"
+    }
+  ],
+  "allowed_pdf_paths": [
+    "/sites/default/files/"
+  ],
   "sync_command": "python3 scripts/sync_sonova_reports.py",
   "documents": [
     {"period": "2026-h1", "title": "Sonova Half-Year Report 2025/26", "kind": "half-year-report", "source_url": "https://www.sonova.com/sites/default/files/2025-11/Sonova_Half-Year%20report%202025-26_EN.pdf"},
