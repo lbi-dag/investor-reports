@@ -2,7 +2,7 @@ name: Sync GN reports
 
 on:
   schedule:
-    - cron: "47 8 1,15 * *"
+    - cron: "47 8 10,25 * *"
   workflow_dispatch:
 
 permissions:

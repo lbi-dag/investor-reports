@@ -1,7 +1,7 @@
 name: Sync Sonova reports
 on:
   schedule:
-    - cron: "27 9 1,15 * *"
+    - cron: "27 9 10,25 * *"
   workflow_dispatch:
 permissions:
   contents: write

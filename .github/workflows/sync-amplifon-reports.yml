@@ -2,7 +2,7 @@ name: Sync Amplifon reports
 
 on:
   schedule:
-    - cron: "17 8 1,15 * *"
+    - cron: "17 8 10,25 * *"
   workflow_dispatch:
 
 permissions:

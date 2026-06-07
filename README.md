@@ -155,15 +155,15 @@ continue if its size or SHA-256 differs from the recorded source metadata.
 
 ## Scheduled Sync
 
-GitHub Actions runs three source-sync workflows on the 1st and 15th of each
+GitHub Actions runs three source-sync workflows on the 10th and 25th of each
 month. Cron times are UTC, and each workflow can also be started manually with
 `workflow_dispatch`.
 
 | Company | Schedule | Validation step | Sync command | Automation branch |
 | --- | --- | --- | --- | --- |
-| Amplifon | `17 8 1,15 * *` | `python3 -m unittest discover -s tests -v` | `python3 scripts/sync_amplifon_reports.py` | `automation/sync-amplifon-reports` |
-| GN | `47 8 1,15 * *` | `npm test` | `python3 scripts/sync_gn_reports.py` | `automation/sync-gn-reports` |
-| Sonova | `27 9 1,15 * *` | `npm test` | `python3 scripts/sync_sonova_reports.py` | `automation/sync-sonova-reports` |
+| Amplifon | `17 8 10,25 * *` | `python3 -m unittest discover -s tests -v` | `python3 scripts/sync_amplifon_reports.py` | `automation/sync-amplifon-reports` |
+| GN | `47 8 10,25 * *` | `npm test` | `python3 scripts/sync_gn_reports.py` | `automation/sync-gn-reports` |
+| Sonova | `27 9 10,25 * *` | `npm test` | `python3 scripts/sync_sonova_reports.py` | `automation/sync-sonova-reports` |
 
 The scheduled jobs perform these tasks:
 
