@@ -68,19 +68,6 @@ python3 scripts/sync_sonova_reports.py --refresh-extracts
   official investor indexes.
 - Existing official URLs in company `config.json` files remain supported as
   compatibility seeds.
-- Workflows run on the 10th and 25th of each month UTC and can be triggered
-  manually:
-    - Amplifon: `17 8 10,25 * *`, runs unit tests, then
-      `python3 scripts/sync_amplifon_reports.py`, and opens
-      `automation/sync-amplifon-reports` when files change.
-    - GN: `47 8 10,25 * *`, runs `npm test`, then
-      `python3 scripts/sync_gn_reports.py`, and opens
-      `automation/sync-gn-reports` when files change.
-    - Sonova: `27 9 10,25 * *`, runs `npm test`, then
-      `python3 scripts/sync_sonova_reports.py`, and opens
-      `automation/sync-sonova-reports` when files change.
-- Scheduled syncs download new PDFs temporarily, validate PDF signature and
-  size, record SHA-256 checksums, extract page-marked Markdown, update
-  `reports.json`, regenerate `INDEX.md`, and skip duplicate URLs,
-  duplicate period/type combinations, unrelated materials, sustainability-only
-  documents, and replacement candidates.
+- Workflows run on the 10th and 25th of each month UTC.
+- See `docs/scheduled-source-syncs.md` for the canonical workflow schedules,
+  tasks, discovery rules, automation branches, and safety behavior.
