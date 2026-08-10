@@ -110,6 +110,26 @@
       "downloaded_at": "2026-06-06",
       "size_bytes": 423587,
       "sha256": "9f81b87c16c9f5987a298bcd10acd3de83237e76ef80dd05a29c88d4013eb983"
+    },
+    {
+      "period": "2026-h1",
+      "title": "Interim Financial Report as at 30 June 2026",
+      "kind": "financial-report",
+      "local_file": "2026-h1/financial-report.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/financial-reports/2026/Interim%20Financial%20Report%20as%20at%2030%20June%202026.pdf",
+      "downloaded_at": "2026-08-10",
+      "size_bytes": 3050415,
+      "sha256": "804a4452fef8d11d9b1f0f765c0c07d453abe115d9134333adc621ceae6f6266"
+    },
+    {
+      "period": "2026-h1",
+      "title": "H1 2026 Results Presentation",
+      "kind": "results-presentation",
+      "local_file": "2026-h1/results-presentation.md",
+      "source_url": "https://corporate.amplifon.com/content/dam/amplifon/archive/en/investors/presentations-webcast/2026/Q2-2026-results-presentation.pdf",
+      "downloaded_at": "2026-08-10",
+      "size_bytes": 408652,
+      "sha256": "e22fa3f5dd4d2557ed60836d566bce8ea6c1ff310f99fa3e72e0a0e1f88adf5e"
     }
   ]
 }
