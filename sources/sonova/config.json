@@ -5,18 +5,15 @@
   "index_pages": [
     {
       "kind": "financial-reports",
-      "label": "Financial reports",
-      "url": "https://www.sonova.com/en/financial-reports"
-    },
-    {
-      "kind": "investor-presentations",
-      "label": "Presentations and webcasts",
-      "url": "https://www.sonova.com/en/investor-presentations"
+      "label": "Reports and presentations",
+      "url": "https://www.sonova.com/financial-reports/"
     }
   ],
   "allowed_pdf_paths": [
+    "/wp-content/uploads/",
     "/sites/default/files/"
   ],
+  "discovery_since": "2026-01-01",
   "sync_command": "python3 scripts/sync_sonova_reports.py",
   "documents": [
     {"period": "2026-h1", "title": "Sonova Half-Year Report 2025/26", "kind": "half-year-report", "source_url": "https://www.sonova.com/sites/default/files/2025-11/Sonova_Half-Year%20report%202025-26_EN.pdf"},
