@@ -87,6 +87,8 @@ workflow schedules, tasks, discovery rules, and safety behavior.
   validation, and static-site serving.
 - [Scheduled Source Syncs](docs/scheduled-source-syncs.md): GitHub Actions
   cadence, discovery rules, and PR behavior.
+- [Architecture](ARCHITECTURE.md): data flow from official-source discovery
+  through extraction, analysis, validation, and publishing.
 - [Roadmap](ROADMAP.md): planned improvements for analysis depth, dashboards,
   and investor engagement.
 - [Agent Instructions](AGENTS.md): concise operating context for AI coding
