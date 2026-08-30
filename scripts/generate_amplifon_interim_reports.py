@@ -189,6 +189,38 @@ REPORTS = [
         "bear": "Restructuring fails to offset weak demand while buybacks, dividends, and lower cash flow keep leverage elevated.",
         "watch": "FY constant-currency growth versus 2%-2.5%; adjusted margin near 23%; Fit4Growth savings and revenue impact; free cash flow; net debt.",
     },
+    {
+        "slug": "2026-h1",
+        "period": "H1 2026",
+        "ended": "June 30, 2026",
+        "badge": "Organic recovery, but earnings and deal risk remain",
+        "source": "2026-h1/financial-report.md",
+        "source_title": "Amplifon Interim Financial Report as at June 30, 2026",
+        "sha": "804a4452fef8d11d9b1f0f765c0c07d453abe115d9134333adc621ceae6f6266",
+        "pages": "7-9, 12, 35-36, 69",
+        "analysis_date": "2026-08-30",
+        "verdict": "Amplifon restored organic growth and expanded adjusted margins in H1, but reported revenue barely grew, statutory EBITDA and profit fell, and the planned GN Hearing acquisition leaves the balance-sheet story dependent on a €449 million equity raise and a €1.35 billion bridge loan.",
+        "consistency": "Medium: the H1 rebound addresses the 2025 guidance cuts and weak Q1 reported earnings, but the improvement is clearest in adjusted measures while Fit4Growth removed revenue, reported EBITDA and net profit declined, and the next operating baseline depends on the GN Hearing transaction.",
+        "kpis": [("€1.19B", "Revenue", "+0.4% YoY; +3.5% organic"), ("25.1%", "Adjusted EBITDA margin", "+70 bps YoY"), ("€49.1M", "Reported group profit", "-28.0% YoY"), ("€56.6M", "Free cash flow", "+€19.1M YoY")],
+        "working": [
+            "Organic revenue growth accelerated to 3.5%, with positive organic performance across all regions; Q2 organic growth reached 4.7%.",
+            "Adjusted EBITDA increased 3.6% to €298.0 million and the adjusted margin rose 70 basis points to 25.1%.",
+            "Free cash flow rose to €56.6 million from €37.5 million as net operating capex fell to €45.9 million from €64.4 million.",
+        ],
+        "obscured": [
+            "Reported revenue grew only 0.4% because Fit4Growth streamlining and reorganization removed 3.0 percentage points of revenue and FX removed another 0.9 points; Americas reported revenue fell 5.9%.",
+            "Reported EBITDA fell 3.5% and reported group profit fell 28.0%, while adjusted EBITDA excluded €21.0 million of items versus €0.7 million a year earlier, including €11.8 million of GN Hearing transaction and integration costs.",
+            "The headline debt reduction is largely the €449.0 million equity raise earmarked for GN Hearing; on a pro-forma basis excluding it, net financial debt excluding leases was €1.05 billion, essentially unchanged from December 2025.",
+            "Amplifon has signed a €1.35 billion 24-month senior loan for the remaining GN Hearing cash consideration, so leverage and integration risk will change materially if the transaction closes.",
+        ],
+        "decoded": [
+            ("“Tangible results” from 2025 initiatives", "Organic growth and adjusted margin improved, but statutory EBITDA and group profit declined and the revenue base was reduced by Fit4Growth actions.", "High"),
+            ("Integration planning is “fully in line”", "The company reports readiness progress, but regulatory approval, a €1.35 billion bridge loan, and the operational combination of GN Hearing remain future execution risks.", "Medium"),
+        ],
+        "bull": "Organic growth stays above 3%, Fit4Growth converts into the guided roughly 100-basis-point adjusted-margin increase, and GN Hearing closes without disrupting cash generation or financing access.",
+        "bear": "The reported revenue base remains constrained by disposals and the US contract exit, adjusted gains fail to reach statutory earnings and cash, or the GN Hearing deal increases leverage and integration costs before synergies materialize.",
+        "watch": "Organic growth excluding the terminated US managed-care agreement; reported versus adjusted EBITDA and profit; free cash flow after deal costs; pro-forma leverage; GN Hearing approvals, funding, and integration milestones.",
+    },
 ]
 
 STYLE = """
@@ -237,7 +269,7 @@ def render(report):
 <li>Source Markdown is extracted from the official PDF; complex tables and visual layouts should be checked against the official PDF.</li>
 <li>Comparisons use management-defined measures where stated and do not constitute investment advice.</li></ul></section>
 <footer class="footer"><span>Amplifon S.p.A. · {escape(report["period"])} · Independent analysis</span><span>Not investment advice · Verify primary sources</span></footer>
-<div class="metadata"><div>Analysis Date: {ANALYSIS_DATE}</div><div>Skill Version: {SKILL_VERSION}</div><div>Model Version: {MODEL_VERSION}</div><div>Source SHA-256: {report["sha"]}</div></div>
+<div class="metadata"><div>Analysis Date: {report.get("analysis_date", ANALYSIS_DATE)}</div><div>Skill Version: {SKILL_VERSION}</div><div>Model Version: {MODEL_VERSION}</div><div>Source SHA-256: {report["sha"]}</div></div>
 </main></body></html>
 """
 
