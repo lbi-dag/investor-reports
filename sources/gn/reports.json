@@ -40,6 +40,16 @@
       "downloaded_at": "2026-06-06",
       "size_bytes": 768835,
       "sha256": "3e94e922dcec3e679621d07f7a92b194eba38969c20c4a5147bfa3d293be0a84"
+    },
+    {
+      "period": "2026-h1",
+      "kind": "conference-call-presentation",
+      "title": "GN Q2 2026 Conference Call Presentation",
+      "source_url": "https://www.gn.com/-/media/Files/Financial-Download-Center/2026/Q3/GN-Q2-2026-conference-call.pdf",
+      "local_file": "2026-h1/conference-call-presentation.md",
+      "downloaded_at": "2026-08-25",
+      "size_bytes": 1472348,
+      "sha256": "fad18b263ebfa5fbc557eeacea0e8db51e3f635d1b57223301a75b3702435cdb"
     }
   ]
 }
