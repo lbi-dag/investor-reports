@@ -227,6 +227,7 @@ def classify_sonova_document(context: str, url: str, source_kind: str) -> dict |
 
 def discover_sonova_documents(config: dict) -> list[dict]:
     documents = []
+    earliest_year = int(config.get("discovery_since", "2000-01-01")[:4])
     for source in config["index_pages"]:
         parser = ContextLinkParser()
         parser.feed(fetch(source["url"]).decode("utf-8", errors="replace"))
@@ -235,7 +236,7 @@ def discover_sonova_documents(config: dict) -> list[dict]:
             if not is_official_pdf(url, config):
                 continue
             classified = classify_sonova_document(context, url, source["kind"])
-            if classified:
+            if classified and int(classified["period"][:4]) >= earliest_year:
                 documents.append(classified)
     return documents
 
