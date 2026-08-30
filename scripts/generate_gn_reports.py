@@ -12,6 +12,7 @@ SOURCES = {
     "annual": ("2025-fy/annual-report.md", "GN Annual Report 2025", "3deac8acec8e35cbd49fca178e9e21cff5a200801af61a5f18d87f789200e555"),
     "q1": ("2026-q1/interim-report.md", "GN Interim Report Q1 2026", "3e94e922dcec3e679621d07f7a92b194eba38969c20c4a5147bfa3d293be0a84"),
     "q1-presentation": ("2026-q1/conference-call-presentation.md", "GN Q1 2026 Conference Call Presentation", "5520895639af4f618d355c27576ff18b76e9761d1a0367f8a9d2a0bad41372b1"),
+    "h1": ("2026-h1/conference-call-presentation.md", "GN Q2 2026 Conference Call Presentation", "fad18b263ebfa5fbc557eeacea0e8db51e3f635d1b57223301a75b3702435cdb"),
 }
 
 REPORTS = [
@@ -76,6 +77,37 @@ REPORTS = [
         "watch": "Hearing-sale approvals and closing; Enterprise growth versus revised -3%-3% guidance; continuing adjusted EBITA margin versus 8%-9%; DKK 750 million cash-cost budget; post-close leverage and buybacks.",
         "sources": ["q1", "q1-presentation", "annual"],
     },
+    {
+        "slug": "2026-h1",
+        "period": "H1 2026",
+        "ended": "June 30, 2026",
+        "badge": "Margin recovery needs a very strong second half",
+        "analysis_date": "2026-08-30",
+        "verdict": "GN's remaining Enterprise and Gaming operations improved gross margins in Q2, led by Gaming, but H1 organic revenue was still down 4%, Q2 adjusted EBITA margin was only 5.1%, free cash flow turned sharply negative, and the increased margin target now depends on a 4%-9% organic-growth second half while Hearing is being sold.",
+        "consistency": "Low: after cutting the continuing-operations revenue outlook in Q1, GN cut it again at H1 while raising the margin target. The new target assumes a sharp H2 inflection from negative first-half organic growth, tariff refunds, seasonality, and cost actions rather than delivery already visible in the H1 result.",
+        "consistency_ref": ("h1", "15-16"),
+        "kpis": [("-4%", "H1 organic growth", "Continuing operations"), ("DKK 2.17B", "Q2 revenue", "-6% reported YoY"), ("5.1%", "Q2 adj. EBITA margin", "Down from 7.1%"), ("DKK -616M", "Q2 FCF ex M&A", "Working-capital and carve-out use")],
+        "working": [
+            ("Gaming delivered 5% organic revenue growth in Q2, with gross margin rising 520 basis points and adjusted divisional profit margin rising 280 basis points as Nova Pro Omni supported market-share gains.", "h1", "11"),
+            ("Enterprise gross margin improved 110 basis points in Q2 through pricing discipline, lower tariffs, and FX despite a 7% organic revenue decline.", "h1", "8"),
+            ("The Hearing carve-out remains expected to close toward year-end, with planned 2027 structural savings of around DKK 200 million intended to offset stranded costs.", "h1", "4"),
+        ],
+        "obscured": [
+            ("Continuing operations recorded -4% organic growth in H1. Q2 revenue fell 6% reported and adjusted EBITA margin was 5.1%, after Q1's 0.3% margin.", "h1", "14, 16"),
+            ("GN reduced 2026 continuing-operations organic-growth guidance to 0%-3% from 0%-6%, while increasing the adjusted EBITA-margin target to 9%-10%; the implied H2 organic-growth range is 4%-9%.", "h1", "15-16"),
+            ("Q2 free cash flow excluding M&A was negative DKK 616 million because of temporary working-capital build, supply-chain insourcing, and Hearing-carve-out costs; net interest-bearing debt was still DKK 9.6 billion.", "h1", "14"),
+            ("The sale plan also carries around DKK 750 million of cash costs across 2026-27, approximately 75% expected in 2026, alongside one-off transaction, carve-out, right-sizing, and impairment costs.", "h1", "4, 19"),
+        ],
+        "decoded": [
+            ("“Steady progress”", "Q2 gross-margin trends improved, but revenue remained negative, free cash flow was sharply negative, and delivery of the revised target rests on a much stronger H2.", "High", "h1", "14-16"),
+            ("Evolve3 success is “boding well for strong H2 2026”", "Premium headset sell-out is encouraging, but the full benefit depends on September launches, gradual rollout, and an improvement in pressured EMEA demand.", "Medium", "h1", "7-10"),
+        ],
+        "bull": "Evolve3 launches and Gaming market-share gains return the continuing business to growth in Q3, tariff refunds and operating leverage lift margins, and the Hearing sale closes on schedule with cost actions containing stranded costs.",
+        "bear": "EMEA remains weak, new product launches fail to convert sell-out into revenue, working-capital and carve-out costs persist, and the required H2 growth and margin inflection does not occur before GN loses Hearing's earnings contribution.",
+        "watch": "Quarterly Enterprise and Gaming organic growth; Evolve3 sell-in and EMEA demand; Q3 free-cash-flow normalization; progress against the DKK 750 million cash-cost budget; Hearing closing and post-close leverage; delivery of 0%-3% growth and 9%-10% adjusted EBITA margin.",
+        "sources": ["h1", "q1"],
+        "source_caveat": "The H1 interim financial report was not yet in the source lake when this brief was prepared. H1 conclusions use GN's Q2 conference-call presentation and the Q1 interim report; verify detailed financial-statement disclosures against the official H1 filing when it is available.",
+    },
 ]
 
 STYLE = """
@@ -127,10 +159,10 @@ def render(report):
 <p><strong>Bear case:</strong> {escape(report["bear"])}</p><p><strong>Measurable watchlist:</strong> {escape(report["watch"])}</p></div></section></div>
 <section class="sources"><h2>Sources And Caveats</h2><ul>{source_items}
 <li><a href="../sources/gn/INDEX.md">GN official source index</a></li>
-<li>Source Markdown is extracted from the official PDF; complex tables and visual layouts should be checked against the official PDF.</li>
+<li>{escape(report.get("source_caveat", "Source Markdown is extracted from the official PDF; complex tables and visual layouts should be checked against the official PDF."))}</li>
 <li>Comparisons use management-defined measures where stated and do not constitute investment advice.</li></ul></section>
 <footer class="footer"><span>GN Store Nord A/S · {escape(report["period"])} · Independent analysis</span><span>Not investment advice · Verify primary sources</span></footer>
-<div class="metadata"><div>Analysis Date: {ANALYSIS_DATE}</div><div>Skill Version: {SKILL_VERSION}</div><div>Model Version: {MODEL_VERSION}</div><div>Source SHA-256: {source_hashes}</div></div>
+<div class="metadata"><div>Analysis Date: {report.get("analysis_date", ANALYSIS_DATE)}</div><div>Skill Version: {SKILL_VERSION}</div><div>Model Version: {MODEL_VERSION}</div><div>Source SHA-256: {source_hashes}</div></div>
 </main></body></html>
 """
 
