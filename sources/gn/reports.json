@@ -50,6 +50,16 @@
       "downloaded_at": "2026-08-25",
       "size_bytes": 1472348,
       "sha256": "fad18b263ebfa5fbc557eeacea0e8db51e3f635d1b57223301a75b3702435cdb"
+    },
+    {
+      "period": "2026-h1",
+      "kind": "interim-report",
+      "title": "GN Interim Report Q2 2026",
+      "source_url": "https://www.gn.com/-/media/Files/Financial-Download-Center/2026/Q2/GN-Interim-Report-Q2-2026.pdf",
+      "local_file": "2026-h1/interim-report.md",
+      "downloaded_at": "2026-10-25",
+      "size_bytes": 1032636,
+      "sha256": "a7253ff2e8432849db34dcc0a617a5c626a57104e11c116e82ac08eab467ff35"
     }
   ]
 }
